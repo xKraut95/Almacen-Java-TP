@@ -7,12 +7,15 @@ public class Envio extends Entrega {
 	private LocalTime horaHasta;
 	private LocalTime horaDesde;
 	private double costo;
+	private Ubicacion ubicacion;
 
-	public Envio(int id, LocalDate fecha, boolean efectivo, LocalTime horaHasta, LocalTime horaDesde, double costo) {
+	public Envio(int id, LocalDate fecha, boolean efectivo, LocalTime horaHasta, LocalTime horaDesde, double costo,
+			Ubicacion ubicacion) {
 		super(id, fecha, efectivo);
 		this.horaHasta = horaHasta;
 		this.horaDesde = horaDesde;
 		this.costo = costo;
+		this.ubicacion = ubicacion;
 	}
 
 	public LocalTime getHoraHasta() {
@@ -39,9 +42,18 @@ public class Envio extends Entrega {
 		this.costo = costo;
 	}
 
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
 	@Override
 	public String toString() {
-		return "Envio [horaHasta=" + horaHasta + ", horaDesde=" + horaDesde + ", costo=" + costo + "]";
+		return "Envio [horaHasta=" + horaHasta + ", horaDesde=" + horaDesde + ", costo=" + costo + ", ubicacion="
+				+ ubicacion + "]";
 	}
 
 }
