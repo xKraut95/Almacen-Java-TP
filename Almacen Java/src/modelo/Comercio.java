@@ -9,9 +9,11 @@ public class Comercio {
 	private int diaDescuento;
 	private int porcentajeDescuentoDia;
 	private int porcentajeDescuentoEfectivo;
-	private DiaRetiro DiaRetiro;
+	private DiaRetiro ListaDiaRetiro;
+	private Articulo Articulo;
+	private Carrito Carrito;
 	
-	public Comercio (String nombreComercio, long cuit, double costoFijo, double costoPorK, int diaDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo, DiaRetiro DiaRetiro) {
+	public Comercio (String nombreComercio, long cuit, double costoFijo, double costoPorK, int diaDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo, DiaRetiro ListaDiaRetiro, Articulo Articulo) {
 		this.nombreComercio= nombreComercio;
 		this.cuit= cuit;
 		this.costoFijo= costoFijo;
@@ -19,7 +21,33 @@ public class Comercio {
 		this.diaDescuento = diaDescuento;
 		this.porcentajeDescuentoDia= porcentajeDescuentoDia;
 		this.porcentajeDescuentoEfectivo= porcentajeDescuentoEfectivo;
-		this.DiaRetiro = DiaRetiro;	
+		this.ListaDiaRetiro = ListaDiaRetiro;	
+		this.Articulo = Articulo;
+		this.Carrito = Carrito;
+	}
+
+	public DiaRetiro getListaDiaRetiro() {
+		return ListaDiaRetiro;
+	}
+
+	public void setListaDiaRetiro(DiaRetiro listaDiaRetiro) {
+		ListaDiaRetiro = listaDiaRetiro;
+	}
+
+	public Articulo getArticulo() {
+		return Articulo;
+	}
+
+	public void setArticulo(Articulo articulo) {
+		Articulo = articulo;
+	}
+
+	public Carrito getCarrito() {
+		return Carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		Carrito = carrito;
 	}
 
 	public String getNombreComercio() {
@@ -89,6 +117,6 @@ public class Comercio {
 	
 	@Override
 	public String toString() {
-	    return "Comercio: nombreComercio"+ this.nombreComercio + "Comercio: cuit"+ this.cuit + "Comercio: costoFijo"+ this.costoFijo + "Comercio: costoPorK"+ this.costoPorK + "Comercio: diaDescuento"+ this.diaDescuento + "Comercio: porcentajeDescuentoDia"+ this.porcentajeDescuentoDia + "Comercio: porcentajeDescuentoEfectivo"+ this.porcentajeDescuentoEfectivo + "Comercio:DiaRetiro"+ this.DiaRetiro;
+	    return "Comercio: nombreComercio"+ this.nombreComercio + "Comercio: cuit"+ this.cuit + "Comercio: costoFijo"+ this.costoFijo + "Comercio: costoPorK"+ this.costoPorK + "Comercio: diaDescuento"+ this.diaDescuento + "Comercio: porcentajeDescuentoDia"+ this.porcentajeDescuentoDia + "Comercio: porcentajeDescuentoEfectivo"+ this.porcentajeDescuentoEfectivo + "Comercio:DiaRetiro"+ this.ListaDiaRetiro + "Comercio: Articulo" + this.Articulo + "Comercio:Carrito" + this.Carrito;
 	}
 }
