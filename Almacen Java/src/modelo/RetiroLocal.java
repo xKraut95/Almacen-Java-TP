@@ -23,8 +23,5 @@ public class RetiroLocal extends Entrega {
 	public String toString() {
 		return "RetiroLocal [horaEntrega=" + horaEntrega + "]";
 	}
-	
-	
-	
 
 }

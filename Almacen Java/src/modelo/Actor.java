@@ -4,12 +4,10 @@ public class Actor {
 
 	protected int id;
 	protected Contacto contacto;
-	
-	public Actor(int id, Contacto contacto)
-	{
-		
-		this.id=id;
-		this.contacto=contacto;
+
+	public Actor(int id, Contacto contacto) {
+		this.id = id;
+		this.contacto = contacto;
 	}
 
 	public int getId() {
@@ -27,9 +25,9 @@ public class Actor {
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Actor: id "+ this.id + "Actor: contacto" + this.contacto;
+		return "Actor: id " + this.id + "Actor: contacto" + this.contacto;
 	}
 }

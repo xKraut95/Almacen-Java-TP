@@ -5,13 +5,12 @@ public class Cliente {
 	private String nombre;
 	private int dni;
 	private char sexo;
-	
-	public Cliente (String apellido, String nombre, int dni, char sexo)
-	{
-		this.apellido=apellido;
-		this.nombre=nombre;
-		this.dni=dni;
-		this.sexo=sexo;
+
+	public Cliente(String apellido, String nombre, int dni, char sexo) {
+		this.apellido = apellido;
+		this.nombre = nombre;
+		this.dni = dni;
+		this.sexo = sexo;
 	}
 
 	public String getApellido() {
@@ -45,9 +44,10 @@ public class Cliente {
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	
+
 	public String toString() {
-		return "Cliente:Apellido" + this.apellido + "Cliente: Nombre" + this.nombre + "Cliente: dni" + this.dni + "Cliente: sexo" + this.sexo;
+		return "Cliente:Apellido" + this.apellido + "Cliente: Nombre" + this.nombre + "Cliente: dni" + this.dni
+				+ "Cliente: sexo" + this.sexo;
 	}
-	
+
 }

@@ -8,14 +8,14 @@ public class DiaRetiro {
 	private LocalTime horaDesde;
 	private LocalTime horaHasta;
 	private int intervalo;
-	
-	public DiaRetiro (int id, int diaSemana, LocalTime horaDesde, LocalTime horaHasta, int intervalo) {
-		this.id=id;
-		this.diaSemana=diaSemana;
-		this.horaDesde=horaDesde;
-		this.horaHasta=horaHasta;
-		this.intervalo=intervalo;	
-}
+
+	public DiaRetiro(int id, int diaSemana, LocalTime horaDesde, LocalTime horaHasta, int intervalo) {
+		this.id = id;
+		this.diaSemana = diaSemana;
+		this.horaDesde = horaDesde;
+		this.horaHasta = horaHasta;
+		this.intervalo = intervalo;
+	}
 
 	public int getId() {
 		return id;
@@ -56,9 +56,10 @@ public class DiaRetiro {
 	public void setIntervalo(int intervalo) {
 		this.intervalo = intervalo;
 	}
-	
+
 	@Override
 	public String toString() {
-		return  "DiaRetiro: id:"+this.id + "DiaRetiro: diaSemana"+this.diaSemana + "DiaRetiro:horaDesde"+ this.horaDesde + "DiaRetiro:horaHasta"+this.horaHasta + "DiaRetiro:invervalo"+ this.intervalo;
+		return "DiaRetiro: id:" + this.id + "DiaRetiro: diaSemana" + this.diaSemana + "DiaRetiro:horaDesde"
+				+ this.horaDesde + "DiaRetiro:horaHasta" + this.horaHasta + "DiaRetiro:invervalo" + this.intervalo;
 	}
 }
