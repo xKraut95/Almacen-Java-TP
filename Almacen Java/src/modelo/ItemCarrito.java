@@ -1,4 +1,4 @@
-package comercio;
+package modelo;
 
 public class ItemCarrito {
 	private Articulo articulo;

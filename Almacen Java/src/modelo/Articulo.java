@@ -1,4 +1,4 @@
-package comercio;
+package modelo;
 
 public class Articulo {
 	private int id;

@@ -10,7 +10,8 @@ public class Envio extends Entrega {
 	private Ubicacion ubicacion;
 
 	public Envio(int id, LocalDate fecha, boolean efectivo, LocalTime horaHasta, LocalTime horaDesde, double costo,
-			Ubicacion ubicacion) {
+			Ubicacion ubicacion) 
+	{
 		super(id, fecha, efectivo);
 		this.horaHasta = horaHasta;
 		this.horaDesde = horaDesde;

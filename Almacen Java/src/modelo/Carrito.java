@@ -1,7 +1,9 @@
-package comercio;
+package modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+
 
 
 public class Carrito {
