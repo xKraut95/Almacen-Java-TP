@@ -1,6 +1,6 @@
 package test;
 
-import comercio.Articulo;
+import modelo.Articulo;
 
 public class Test_Articulo {
 

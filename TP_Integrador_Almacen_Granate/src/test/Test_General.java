@@ -1,10 +1,10 @@
 package test;
 
-import comercio.Articulo;
-import comercio.ItemCarrito;
 //import comercio.Carrito;
 //import comercio.Cliente;
 //import comercio.Entrega;
+import modelo.Articulo;
+import modelo.ItemCarrito;
 
 public class Test_General {
 
