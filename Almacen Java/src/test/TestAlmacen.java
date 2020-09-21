@@ -23,6 +23,7 @@ public class TestAlmacen {
 		// Instancias de ItemCarrito
 		ItemCarrito item = new ItemCarrito(art1, 6);
 		System.out.println(item);
+	
 
 	}
 
