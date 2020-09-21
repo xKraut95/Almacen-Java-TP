@@ -90,7 +90,7 @@ public class Carrito {
 	}
 
 	public ItemCarrito traerItemCarrito(int idArticulo) {
-		Articulo articulo = new Articulo(1, "nothing", "nada", 5);
+		Articulo articulo = new Articulo(1, "nada", "nada", 5);
 		ItemCarrito aux = new ItemCarrito(articulo, 1);
 		boolean band = false;
 		int i = 0;
@@ -150,8 +150,8 @@ public class Carrito {
 	}
 
 	public double calcularDescuentoDia(int diaDescuento, double porcentajeDescuentoDia) {
-		double descuento=0;
-		for(ItemCarrito item : lstItemCarrito) {
+		double descuento = 0;
+		for (ItemCarrito item : lstItemCarrito) {
 			int cantidad = item.getCantidad();
 			int divisor = 2;
 			float calculo = cantidad / divisor;
