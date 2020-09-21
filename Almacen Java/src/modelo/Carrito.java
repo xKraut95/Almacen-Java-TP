@@ -90,7 +90,7 @@ public class Carrito {
 	}
 
 	public ItemCarrito traerItemCarrito(int idArticulo) {
-		Articulo articulo = new Articulo(1, "nada", "nada", 5);
+		Articulo articulo = new Articulo(1, "nothing", "nada", 5);
 		ItemCarrito aux = new ItemCarrito(articulo, 1);
 		boolean band = false;
 		int i = 0;
