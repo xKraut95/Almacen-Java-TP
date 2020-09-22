@@ -1,7 +1,6 @@
 package modelo;
 
-public class Actor {
-
+public abstract class Actor {
 	protected int id;
 	protected Contacto contacto;
 

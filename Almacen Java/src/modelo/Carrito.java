@@ -1,20 +1,21 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Carrito {
 	private int id;
 	private LocalDate fecha;
-	private LocalDate hora;
+	private LocalTime hora;
 	private boolean cerrado;
 	private double descuento;
 	private Cliente cliente;
 	private Entrega entrega;
 	private ArrayList<ItemCarrito> lstItemCarrito;
 
-	public Carrito(int id, LocalDate fecha, LocalDate hora, boolean cerrado, double descuento, Cliente cliente,
+	public Carrito(int id, LocalDate fecha, LocalTime hora, boolean cerrado, double descuento, Cliente cliente,
 			Entrega entrega) {
 		this.id = id;
 		this.fecha = fecha;
@@ -23,6 +24,7 @@ public class Carrito {
 		this.descuento = descuento;
 		this.cliente = cliente;
 		this.entrega = entrega;
+		this.lstItemCarrito = new ArrayList<ItemCarrito>();
 	}
 
 	public int getId() {
@@ -41,11 +43,11 @@ public class Carrito {
 		this.fecha = fecha;
 	}
 
-	public LocalDate getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
 
-	public void setHora(LocalDate hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 
@@ -85,10 +87,6 @@ public class Carrito {
 		return lstItemCarrito;
 	}
 
-	public void setLstItemCarrito(ArrayList<ItemCarrito> lstItemCarrito) {
-		this.lstItemCarrito = lstItemCarrito;
-	}
-
 	public ItemCarrito traerItemCarrito(int idArticulo) {
 		Articulo articulo = new Articulo(1, "nada", "nada", 5);
 		ItemCarrito aux = new ItemCarrito(articulo, 1);
@@ -125,7 +123,6 @@ public class Carrito {
 	public boolean eliminarItem(Articulo articulo, int cantidad) throws Exception {
 		int idArticulo = articulo.getId();
 		ItemCarrito aux = traerItemCarrito(idArticulo);
-
 		if (aux == null)
 			throw new Exception("Error: No  existe el producto en el carrito");
 		else {
@@ -151,11 +148,13 @@ public class Carrito {
 
 	public double calcularDescuentoDia(int diaDescuento, double porcentajeDescuentoDia) {
 		double descuento = 0;
-		for (ItemCarrito item : lstItemCarrito) {
-			int cantidad = item.getCantidad();
-			int divisor = 2;
-			float calculo = cantidad / divisor;
-			descuento += calculo * item.getArticulo().getPrecio() * (porcentajeDescuentoDia / 100);
+		if (diaDescuento == fecha.getDayOfWeek().getValue()) {
+			for (ItemCarrito item : lstItemCarrito) {
+				int cantidad = item.getCantidad();
+				int divisor = 2;
+				float calculo = cantidad / divisor;
+				descuento += calculo * item.getArticulo().getPrecio() * (porcentajeDescuentoDia / 100);
+			}
 		}
 		return descuento;
 	}

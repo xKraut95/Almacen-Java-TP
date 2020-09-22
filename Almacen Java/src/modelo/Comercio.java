@@ -24,31 +24,21 @@ public class Comercio {
 		this.diaDescuento = diaDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
-
+		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
+		this.lstArticulo = new ArrayList<Articulo>();
+		this.lstICarrito = new ArrayList<Carrito>();
 	}
 
 	public ArrayList<DiaRetiro> getLstDiaRetiro() {
 		return lstDiaRetiro;
 	}
 
-	public void setLstDiaRetiro(ArrayList<DiaRetiro> lstDiaRetiro) {
-		this.lstDiaRetiro = lstDiaRetiro;
-	}
-
 	public ArrayList<Articulo> getLstArticulo() {
 		return lstArticulo;
 	}
 
-	public void setLstArticulo(ArrayList<Articulo> lstArticulo) {
-		this.lstArticulo = lstArticulo;
-	}
-
 	public ArrayList<Carrito> getLstICarrito() {
 		return lstICarrito;
-	}
-
-	public void setLstICarrito(ArrayList<Carrito> lstICarrito) {
-		this.lstICarrito = lstICarrito;
 	}
 
 	public String getNombreComercio() {
