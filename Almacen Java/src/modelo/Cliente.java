@@ -50,5 +50,30 @@ public class Cliente {
 				+ "Cliente: sexo" + this.sexo;
 	}
 
-}
 
+
+    public boolean validarSexo(char sexo)
+    {
+    	String sexo1 = "" + sexo;
+    	boolean estado = false;
+
+    	if (sexo1 == "m")
+    	{
+    		System.out.println("Masculino");
+    		estado= true;
+    	}
+    	if (sexo1 == "f")
+    	{
+    		System.out.println("Femenino");
+    		estado = true;
+    	}
+    	else
+    	{
+    		System.out.println("Sexo no valido");
+    		return false;
+    	}
+    	
+    	return estado;
+    	
+    }
+}
