@@ -127,16 +127,7 @@ public class Comercio {
 		   return false;
 	   }
 	   
-	  
-	   
 	   char[] cuitVector = cuit1.toCharArray();
-	   for (int j=0; j<2;j++)
-	   {
-		   if (cuitVector[0] != 3 & cuitVector[1] != 0)
-		   {
-			   System.out.println("Cuit no valido, no es empresa");
-		   }
-	   }
 	   
 	   Integer[] multiplos = {5,4,3,2,7,6,5,4,3,2};
 	   Integer aux=0;
@@ -155,7 +146,8 @@ public class Comercio {
 		   aux=3;
 	   }
 	   
-	   System.out.println("Retornamos el Cuit Valido");
+	   System.out.println("En esta parte va a tirar false si tras pasar el cuit como parametro no es igual, Y tira true si el cuit es igual al pasado x parametro.");
+	   
 	   return Objects.equals(Character.getNumericValue(cuitVector[10]),aux);
 	   
 	   

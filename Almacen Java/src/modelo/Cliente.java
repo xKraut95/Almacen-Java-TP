@@ -3,10 +3,10 @@ package modelo;
 public class Cliente {
 	private String apellido;
 	private String nombre;
-	private int dni;
+	private long dni;
 	private char sexo;
 
-	public Cliente(String apellido, String nombre, int dni, char sexo) {
+	public Cliente(String apellido, String nombre, long dni, char sexo) {
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.dni = dni;
@@ -29,11 +29,11 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	public int getDni() {
+	public long getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(long dni) {
 		this.dni = dni;
 	}
 
@@ -54,26 +54,29 @@ public class Cliente {
 
     public boolean validarSexo(char sexo)
     {
-    	String sexo1 = "" + sexo;
+    	
     	boolean estado = false;
 
-    	if (sexo1 == "m")
+    	if (sexo == 'm')
     	{
     		System.out.println("Masculino");
     		estado= true;
+    		return estado;
     	}
-    	if (sexo1 == "f")
+    	if (sexo == 'f')
     	{
     		System.out.println("Femenino");
     		estado = true;
+    		return estado;
     	}
     	else
     	{
     		System.out.println("Sexo no valido");
     		return false;
+    		
     	}
     	
-    	return estado;
+    	
     	
     }
 }

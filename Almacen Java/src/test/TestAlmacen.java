@@ -1,7 +1,13 @@
 package test;
 
+import java.util.ArrayList;
+
 import modelo.Articulo;
+import modelo.Carrito;
 import modelo.ItemCarrito;
+import modelo.Comercio;
+import modelo.DiaRetiro;
+import modelo.Cliente;
 
 public class TestAlmacen {
 
@@ -23,7 +29,12 @@ public class TestAlmacen {
 		// Instancias de ItemCarrito
 		ItemCarrito item = new ItemCarrito(art1, 6);
 		System.out.println(item);
-
+		
+	  Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
+		System.out.println(Almacen.validarIdentificadorUnico(30242112322L));
+		
+		Cliente cliente1 = new Cliente ("Soloduja" ,"Ignacio" , 12312312, 'm');
+		System.out.println(cliente1.validarSexo('f'));
 	}
 
 }
