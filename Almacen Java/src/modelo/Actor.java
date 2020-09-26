@@ -25,6 +25,10 @@ public abstract class Actor {
 		this.contacto = contacto;
 	}
 
+	public Ubicacion traerUbicacion() {
+		return contacto.getUbicacion();
+	}
+
 	@Override
 	public String toString() {
 		return "Actor: id " + this.id + "Actor: contacto" + this.contacto;

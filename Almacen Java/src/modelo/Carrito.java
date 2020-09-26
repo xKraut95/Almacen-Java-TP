@@ -27,6 +27,15 @@ public class Carrito {
 		this.lstItemCarrito = new ArrayList<ItemCarrito>();
 	}
 
+	public Carrito(int id, LocalDate fecha, LocalTime hora, boolean cerrado, double descuento) {
+		this.id = id;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.cerrado = cerrado;
+		this.descuento = descuento;
+		this.lstItemCarrito = new ArrayList<ItemCarrito>();
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -173,7 +182,12 @@ public class Carrito {
 		} else {
 			descuentoSup = calcularDescuentoEfectivo(porcentajeDescuentoEfectivo);
 		}
+		setDescuento(descuentoSup);
 		return descuentoSup;
 	}
 
+	public double totalAPagarCarrito() {
+		return calcularTotal() - getDescuento();
+	}
+	
 }
