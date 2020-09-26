@@ -2,7 +2,7 @@ package test;
 
 import modelo.Articulo;
 import modelo.ItemCarrito;
-
+//subiendo lo de Roger a Develop
 public class TestAlmacen {
 
 	public static void main(String[] args) {
