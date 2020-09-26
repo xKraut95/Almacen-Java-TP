@@ -123,10 +123,19 @@ public class Comercio {
 	   
 	   if (cuit1.length() != 11)
 	   {
+		   System.out.println("El cuit no es valido, no tiene 11 caracteres");
 		   return false;
 	   }
 	   
 	   char[] cuitVector = cuit1.toCharArray();
+	   for (int j=0; j<2; j++)
+	   {
+		   if (cuitVector[0] != 3 & cuitVector[1] != 0)
+		   {
+			   System.out.println("Codigo no valido, no es una empresa");
+			   return false;
+		   }
+	   }
 	   
 	   Integer[] multiplos = {5,4,3,2,7,6,5,4,3,2};
 	   Integer aux=0;
@@ -144,13 +153,15 @@ public class Comercio {
 	   {
 		   aux=3;
 	   }
+	   System.out.println("Retornamos el Cuit Valido");
 	   return Objects.equals(Character.getNumericValue(cuitVector[10]),aux);
 	   
 	   
 	   
 	   
    }
-   
+
+
 
 
 }
