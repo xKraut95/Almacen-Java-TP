@@ -119,7 +119,7 @@ public class Comercio {
 
    public boolean validarIdentificadorUnico (long cuit)
    {
-	 String cuit1= "" + cuit;
+	   String cuit1= ""+ cuit;
 	   
 	   if (cuit1.length() != 11)
 	   {
@@ -153,6 +153,7 @@ public class Comercio {
 	   {
 		   aux=3;
 	   }
+	   
 	   System.out.println("Retornamos el Cuit Valido");
 	   return Objects.equals(Character.getNumericValue(cuitVector[10]),aux);
 	   
