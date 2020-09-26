@@ -127,13 +127,14 @@ public class Comercio {
 		   return false;
 	   }
 	   
+	  
+	   
 	   char[] cuitVector = cuit1.toCharArray();
-	   for (int j=0; j<2; j++)
+	   for (int j=0; j<2;j++)
 	   {
 		   if (cuitVector[0] != 3 & cuitVector[1] != 0)
 		   {
-			   System.out.println("Codigo no valido, no es una empresa");
-			   return false;
+			   System.out.println("Cuit no valido, no es empresa");
 		   }
 	   }
 	   
