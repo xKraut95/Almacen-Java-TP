@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Comercio {
 
@@ -114,4 +115,38 @@ public class Comercio {
 				+ "Comercio: porcentajeDescuentoDia" + this.porcentajeDescuentoDia
 				+ "Comercio: porcentajeDescuentoEfectivo" + this.porcentajeDescuentoEfectivo;
 	}
+
+
+   public boolean validarIdentificadorUnico (long cuit)
+   {
+	 String cuit1= "" + cuit;
+	   
+	   if (cuit1.length() != 11)
+	   {
+		   return false;
+	   }
+	   
+	   char[] cuitVector = cuit1.toCharArray();
+	   
+	   Integer[] multiplos = {5,4,3,2,7,6,5,4,3,2};
+	   Integer aux=0;
+	   
+	   for (int i=0; i<10; i++)
+	   {
+		   aux+= Character.getNumericValue(cuitVector[i]) * multiplos[i];
+	   }
+	   aux = 11 - (aux % 11);
+	   if(aux==11)
+	   {
+		   aux=0;
+	   }
+	   return Objects.equals(Character.getNumericValue(cuitVector[10]),aux);
+	   
+	   
+	   
+	   
+   }
+   
+
+
 }
