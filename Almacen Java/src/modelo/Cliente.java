@@ -3,10 +3,10 @@ package modelo;
 public class Cliente {
 	private String apellido;
 	private String nombre;
-	private int dni;
+	private long dni;
 	private char sexo;
 
-	public Cliente(String apellido, String nombre, int dni, char sexo) {
+	public Cliente(String apellido, String nombre, long dni, char sexo) {
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.dni = dni;
@@ -29,11 +29,11 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	public int getDni() {
+	public long getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(long dni) {
 		this.dni = dni;
 	}
 
@@ -48,6 +48,21 @@ public class Cliente {
 	public String toString() {
 		return "Cliente:Apellido" + this.apellido + "Cliente: Nombre" + this.nombre + "Cliente: dni" + this.dni
 				+ "Cliente: sexo" + this.sexo;
+	}
+	
+	//TODO Poner Override
+	public boolean validarIdentificadorUnico() {
+		String dniString = Long.toString(this.dni);
+				
+		if(dniString.length()==8) {
+			return true;
+			}
+		
+		else {			
+			return false;
+			
+		}
+		
 	}
 
 }
