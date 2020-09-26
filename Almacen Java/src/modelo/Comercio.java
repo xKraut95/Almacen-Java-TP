@@ -140,6 +140,10 @@ public class Comercio {
 	   {
 		   aux=0;
 	   }
+	   if(aux==10)
+	   {
+		   aux=3;
+	   }
 	   return Objects.equals(Character.getNumericValue(cuitVector[10]),aux);
 	   
 	   
