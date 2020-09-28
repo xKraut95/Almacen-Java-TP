@@ -41,6 +41,11 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
+		try {
+			carrito.eliminarItem(art1, 1);
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
 //TRAER ARTICULO INDIVIDUALMENTE
 		System.out.println("Item solicitado: " + carrito.traerItemCarrito(art5.getId()));
 //PRODUCTOS DESPUES DE LAS MODIFICACIONES

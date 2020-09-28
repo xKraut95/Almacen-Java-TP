@@ -133,7 +133,7 @@ public class Carrito {
 		int idArticulo = articulo.getId();
 		ItemCarrito aux = traerItemCarrito(idArticulo);
 		if (aux == null)
-			throw new Exception("Error: No  existe el producto en el carrito");
+			throw new Exception("Error: No  existe el articulo en el carrito");
 		else {
 			if (aux.getCantidad() > cantidad) {
 				int restaCantArticulo = aux.getCantidad() - cantidad;
