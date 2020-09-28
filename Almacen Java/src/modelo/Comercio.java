@@ -119,6 +119,8 @@ public class Comercio {
 
    public boolean validarIdentificadorUnico (long cuit) 
    {
+	   Comercio Comercio1 = new Comercio ("Prueba", 0 , 1, 2, 3, 4, 5);
+	   Comercio1.setCuit(cuit);
 	   String cuit1= ""+ cuit;
 	   
 	  
@@ -150,9 +152,8 @@ public class Comercio {
 		   aux=3;
 	   }
 	   
-	   System.out.println("Tira false si la validacion no da igual, y true si la validacion es correcta");
-	   
+	   System.out.println("Aqui devuelve true si el codigo es igual al parametro pasado, y false si no lo es");
 	   return Objects.equals(Character.getNumericValue(cuitVector[10]),aux);
-
+	   }
    }
-}
+
