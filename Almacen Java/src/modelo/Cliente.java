@@ -49,49 +49,37 @@ public class Cliente {
 		return "Cliente:Apellido" + this.apellido + "Cliente: Nombre" + this.nombre + "Cliente: dni" + this.dni
 				+ "Cliente: sexo" + this.sexo;
 	}
-	
-	//TODO Poner Override
+
 	public boolean validarIdentificadorUnico() {
 		String dniString = Long.toString(this.dni);
-				
-		if(dniString.length()==8) {
+
+		if (dniString.length() == 8) {
 			return true;
-			}
-		
-		else {			
-			return false;
-			
 		}
-		
+
+		else {
+			return false;
+
+		}
+
 	}
 
+	public boolean validarSexo(char sexo) {
+		boolean estado = false;
+		if (sexo == 'm') {
+			System.out.println("Masculino");
+			estado = true;
+			return estado;
+		}
+		if (sexo == 'f') {
+			System.out.println("Femenino");
+			estado = true;
+			return estado;
+		} else {
+			System.out.println("Sexo no valido");
+			return false;
 
+		}
 
-    public boolean validarSexo(char sexo)
-    {
-    	
-    	boolean estado = false;
-
-    	if (sexo == 'm')
-    	{
-    		System.out.println("Masculino");
-    		estado= true;
-    		return estado;
-    	}
-    	if (sexo == 'f')
-    	{
-    		System.out.println("Femenino");
-    		estado = true;
-    		return estado;
-    	}
-    	else
-    	{
-    		System.out.println("Sexo no valido");
-    		return false;
-    		
-    	}
-    	
-    	
-    	
-    }
+	}
 }
