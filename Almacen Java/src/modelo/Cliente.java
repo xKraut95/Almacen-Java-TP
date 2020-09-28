@@ -49,6 +49,21 @@ public class Cliente {
 		return "Cliente:Apellido" + this.apellido + "Cliente: Nombre" + this.nombre + "Cliente: dni" + this.dni
 				+ "Cliente: sexo" + this.sexo;
 	}
+	
+	//TODO Poner Override
+	public boolean validarIdentificadorUnico() {
+		String dniString = Long.toString(this.dni);
+				
+		if(dniString.length()==8) {
+			return true;
+			}
+		
+		else {			
+			return false;
+			
+		}
+		
+	}
 
 
 
