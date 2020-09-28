@@ -1,7 +1,6 @@
 package modelo;
 
-public class Actor {
-
+public abstract class Actor {
 	protected int id;
 	protected Contacto contacto;
 
@@ -24,6 +23,10 @@ public class Actor {
 
 	public void setContacto(Contacto contacto) {
 		this.contacto = contacto;
+	}
+
+	public Ubicacion traerUbicacion() {
+		return contacto.getUbicacion();
 	}
 
 	@Override

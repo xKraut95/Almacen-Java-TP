@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Comercio {
 
@@ -24,31 +25,21 @@ public class Comercio {
 		this.diaDescuento = diaDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
-
+		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
+		this.lstArticulo = new ArrayList<Articulo>();
+		this.lstICarrito = new ArrayList<Carrito>();
 	}
 
 	public ArrayList<DiaRetiro> getLstDiaRetiro() {
 		return lstDiaRetiro;
 	}
 
-	public void setLstDiaRetiro(ArrayList<DiaRetiro> lstDiaRetiro) {
-		this.lstDiaRetiro = lstDiaRetiro;
-	}
-
 	public ArrayList<Articulo> getLstArticulo() {
 		return lstArticulo;
 	}
 
-	public void setLstArticulo(ArrayList<Articulo> lstArticulo) {
-		this.lstArticulo = lstArticulo;
-	}
-
 	public ArrayList<Carrito> getLstICarrito() {
 		return lstICarrito;
-	}
-
-	public void setLstICarrito(ArrayList<Carrito> lstICarrito) {
-		this.lstICarrito = lstICarrito;
 	}
 
 	public String getNombreComercio() {
@@ -114,4 +105,35 @@ public class Comercio {
 				+ "Comercio: porcentajeDescuentoDia" + this.porcentajeDescuentoDia
 				+ "Comercio: porcentajeDescuentoEfectivo" + this.porcentajeDescuentoEfectivo;
 	}
+
+	public boolean validarIdentificadorUnico(long cuit) {
+		String cuit1 = "" + cuit;
+
+		if (cuit1.length() != 11) {
+			System.out.println("El cuit no es valido, no tiene 11 caracteres");
+			return false;
+		}
+
+		char[] cuitVector = cuit1.toCharArray();
+
+		Integer[] multiplos = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+		Integer aux = 0;
+
+		for (int i = 0; i < 10; i++) {
+			aux += Character.getNumericValue(cuitVector[i]) * multiplos[i];
+		}
+		aux = 11 - (aux % 11);
+		if (aux == 11) {
+			aux = 0;
+		}
+		if (aux == 10) {
+			aux = 3;
+		}
+
+		System.out.println(
+				"En esta parte va a tirar false si tras pasar el cuit como parametro no es igual, Y tira true si el cuit es igual al pasado x parametro.");
+
+		return Objects.equals(Character.getNumericValue(cuitVector[10]), aux);
+	}
+
 }
