@@ -1,6 +1,5 @@
 package test;
 
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -14,22 +13,36 @@ public class TestAlmacen {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Articulo art1 = new Articulo(1, "Fideos", "7791234567898", 36.50);
-		Articulo art2 = new Articulo(2, "Harina", "7792413123459", 75.25);
-		Articulo art3 = new Articulo(3, "Azucar", "7791324467537", 40);
-		Articulo art4 = new Articulo(4, "Yerba", "7793142136424", 84.75);
-		Articulo art5 = new Articulo(5, "Arroz", "7794332635213", 35);
-
 		LocalDate fecha = LocalDate.now();
 		LocalTime hora = LocalTime.now();
-		Carrito carrito = new Carrito(0, fecha, hora, true, 1);
+		Cliente cliente = new Cliente("Soloduja", "Ignacio", 12312312, 'm');
+		Carrito carrito = new Carrito(0, fecha, hora, true, 1, cliente);
+// BLOQUE DE LOS ARTICULOS
+		Articulo art1 = new Articulo(1, "Fideos", 36.50);
+		Articulo art2 = new Articulo(2, "Harina", 75.25);
+		Articulo art3 = new Articulo(3, "Azucar", 40);
+		Articulo art4 = new Articulo(4, "Yerba", 84.75);
+		Articulo art5 = new Articulo(5, "Arroz", 35);
+		try {
+
+			art1.setCodBarras("7790139000196");
+			art2.setCodBarras("7790070507235");
+			art3.setCodBarras("7792540260138");
+			art4.setCodBarras("7790387000856");
+			art5.setCodBarras("7613035068414");
+		}
+
+		catch (Exception e) {
+			System.out.println("Excepción: " + e.getMessage());
+		}
+
 // BLOQUE DEL CARRITO
 		try {
-			carrito.agregar(art1, 1);
-			carrito.agregar(art2, 2);
-			carrito.agregar(art3, 3);
-			carrito.agregar(art4, 4);
-			carrito.agregar(art5, 5);
+			carrito.agregarAlCarrito(art1, 1);
+			carrito.agregarAlCarrito(art2, 2);
+			carrito.agregarAlCarrito(art3, 3);
+			carrito.agregarAlCarrito(art4, 4);
+			carrito.agregarAlCarrito(art5, 5);
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
@@ -46,10 +59,10 @@ public class TestAlmacen {
 		try {
 			carrito.eliminarItem(art1, 1);
 		} catch (Exception e) {
-			System.out.println("Excepcion: " + e.getMessage());
+			System.out.println("\nExcepcion: " + e.getMessage() + "\n");
 		}
 //TRAER ARTICULO INDIVIDUALMENTE
-		System.out.println("Item solicitado: " + carrito.traerItemCarrito(art5.getId()));
+		System.out.println("Item solicitado: " + carrito.traerItemCarrito(art5));
 //PRODUCTOS DESPUES DE LAS MODIFICACIONES
 		System.out.println("Carrito:");
 		for (ItemCarrito item : carrito.getLstItemCarrito()) {
@@ -79,9 +92,7 @@ public class TestAlmacen {
 //VALIDACIONES
 		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
 		System.out.println(Almacen.validarIdentificadorUnico(30242112322L));
-		
-		Cliente cliente1 = new Cliente ("Soloduja" ,"Ignacio" , 12312312, 'm');
-		System.out.println(cliente1.validarSexo('f'));
+
 	}
 
 }
