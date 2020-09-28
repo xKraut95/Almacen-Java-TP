@@ -1,11 +1,14 @@
 package test;
 
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import modelo.Articulo;
 import modelo.Carrito;
 import modelo.ItemCarrito;
+import modelo.Comercio;
+import modelo.Cliente;
 
 public class TestAlmacen {
 
@@ -20,7 +23,6 @@ public class TestAlmacen {
 		LocalDate fecha = LocalDate.now();
 		LocalTime hora = LocalTime.now();
 		Carrito carrito = new Carrito(0, fecha, hora, true, 1);
-
 // BLOQUE DEL CARRITO
 		try {
 			carrito.agregar(art1, 1);
@@ -64,16 +66,22 @@ public class TestAlmacen {
 			System.out.println("Miercoles no es un dia de descuento");
 		}
 //BLOQUE DE DIA DE DESCUENTO AFIRMATIVO
-		if (carrito.calcularDescuentoDia(6, 10d) > 0) {
-			System.out.println("El descuento por el dia Sabado es: " + carrito.calcularDescuentoDia(6, 10d));
+		if (carrito.calcularDescuentoDia(2, 10d) > 0) {
+			System.out.println("El descuento por el dia Sabado es: " + carrito.calcularDescuentoDia(2, 10d));
 		} else {
 			System.out.println(carrito.getFecha().getDayOfWeek() + " no es un dia de descuento");
 		}
 //DESCUENTO MAYOR
 		System.out.println("El descuento por pagar en efectivo es: " + carrito.calcularDescuentoEfectivo(50d));
-		System.out.println("El mayor descuento es: " + carrito.calcularDescuentoCarrito(6, 10d, 50d));
+		System.out.println("El mayor descuento es: " + carrito.calcularDescuentoCarrito(2, 10d, 50d));
 //TOTAL FINAL
 		System.out.println("Total final: " + carrito.totalAPagarCarrito());
+//VALIDACIONES
+		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
+		System.out.println(Almacen.validarIdentificadorUnico(30242112322L));
+		
+		Cliente cliente1 = new Cliente ("Soloduja" ,"Ignacio" , 12312312, 'm');
+		System.out.println(cliente1.validarSexo('f'));
 	}
 
 }

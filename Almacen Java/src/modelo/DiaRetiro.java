@@ -63,3 +63,5 @@ public class DiaRetiro {
 				+ this.horaDesde + "DiaRetiro:horaHasta" + this.horaHasta + "DiaRetiro:invervalo" + this.intervalo;
 	}
 }
+
+

@@ -44,3 +44,5 @@ public class Turno {
 		return "Turno:dia" + this.dia + "Turno:Hora" + this.hora + "Turno:ocupado" + this.ocupado;
 	}
 }
+
+
