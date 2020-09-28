@@ -69,14 +69,10 @@ public class Cliente {
     		estado = true;
     		return estado;
     	}
-    	else
+    	else 
     	{
     		System.out.println("Sexo no valido");
     		return false;
-    		
     	}
-    	
-    	
-    	
     }
 }

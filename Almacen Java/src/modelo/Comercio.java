@@ -117,15 +117,19 @@ public class Comercio {
 	}
 
 
-   public boolean validarIdentificadorUnico (long cuit)
+   public boolean validarIdentificadorUnico (long cuit) 
    {
 	   String cuit1= ""+ cuit;
 	   
-	   if (cuit1.length() != 11)
+	  
+	   if (cuit1.length() != 11)  
+	   
 	   {
-		   System.out.println("El cuit no es valido, no tiene 11 caracteres");
-		   return false;
+		 System.out.println("Cuit no valido, No son 11 caracteres");
+		 return false;  
+		 
 	   }
+	   
 	   
 	   char[] cuitVector = cuit1.toCharArray();
 	   
@@ -146,16 +150,9 @@ public class Comercio {
 		   aux=3;
 	   }
 	   
-	   System.out.println("En esta parte va a tirar false si tras pasar el cuit como parametro no es igual, Y tira true si el cuit es igual al pasado x parametro.");
+	   System.out.println("Tira false si la validacion no da igual, y true si la validacion es correcta");
 	   
 	   return Objects.equals(Character.getNumericValue(cuitVector[10]),aux);
-	   
-	   
-	   
-	   
+
    }
-
-
-
-
 }

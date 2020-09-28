@@ -26,7 +26,6 @@ public class TestAlmacen {
 		System.out.println(art4);
 		System.out.println(art5);
 
-		// Instancias de ItemCarrito
 		ItemCarrito item = new ItemCarrito(art1, 6);
 		System.out.println(item);
 		

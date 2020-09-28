@@ -5,7 +5,8 @@ public class Actor {
 	protected int id;
 	protected Contacto contacto;
 
-	public Actor(int id, Contacto contacto) {
+	public Actor(int id, Contacto contacto)
+	{
 		this.id = id;
 		this.contacto = contacto;
 	}
