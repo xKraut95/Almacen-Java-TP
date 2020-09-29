@@ -30,9 +30,7 @@ public class TestAlmacen {
 			art3.setCodBarras("7792540260138");
 			art4.setCodBarras("7790387000856");
 			art5.setCodBarras("7613035068414");
-		}
-
-		catch (Exception e) {
+		}catch (Exception e) {
 			System.out.println("Excepción: " + e.getMessage());
 		}
 
