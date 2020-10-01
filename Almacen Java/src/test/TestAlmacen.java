@@ -11,7 +11,7 @@ import modelo.Cliente;
 
 public class TestAlmacen {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		// TODO Auto-generated method stub
 
 		Articulo art1 = new Articulo(1, "Fideos", "7791234567898", 36.50);
@@ -30,10 +30,15 @@ public class TestAlmacen {
 		System.out.println(item);
 		
 	  Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
-		System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+	     System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 		
-		Cliente cliente1 = new Cliente ("Soloduja" ,"Ignacio" , 12312312, 'm');
-		System.out.println(cliente1.validarSexo(cliente1.getSexo()));
+	     Almacen.setCuit(231232323L);
+	     System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+	     
+	     Almacen.setCuit(23123232322L);
+	     System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+	    
+
 	}
 
 }
