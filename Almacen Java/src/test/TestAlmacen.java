@@ -11,7 +11,7 @@ import modelo.Cliente;
 
 public class TestAlmacen {
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
 		Articulo art1 = new Articulo(1, "Fideos", "7791234567898", 36.50);
@@ -28,33 +28,28 @@ public class TestAlmacen {
 
 		ItemCarrito item = new ItemCarrito(art1, 6);
 		System.out.println(item);
-		
-	  Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
-	     try{ System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
-		
-	     Almacen.setCuit(3012L);
-	     System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
-	     }
-	     catch (Exception e) {
-	    	 System.out.println("Excepcion:" + e.getMessage());
-	     }
-	    try {	 
-	     
-	     Almacen.setCuit(30112233445L);
-		 System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
-		 
-	     Almacen.setCuit(1122334455L);
-	     System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
-	     
-	     }
-	     catch (Exception e) {
-	    	 System.out.println("Excepcion:" + e.getMessage());
-	     }
-	     
-	     }
-	     
-	     
-	     
-	     
+
+		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
+		try {
+			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+
+			Almacen.setCuit(3012L);
+			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+
+			Almacen.setCuit(30112233445L);
+			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+
+			Almacen.setCuit(1122334455L);
+			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+
 	}
 
+}
