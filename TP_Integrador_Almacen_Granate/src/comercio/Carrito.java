@@ -112,7 +112,7 @@ public class Carrito {
 	}
 
 	public ItemCarrito traerItemCarrito(Articulo articulo) {
-		ItemCarrito aux = new ItemCarrito(articulo, 0);// = itCart;
+		ItemCarrito aux = new ItemCarrito(articulo, 0);
 		boolean band = false;
 		int i = 0;
 		Iterator<ItemCarrito> iterador = lstItemCarrito.iterator();
