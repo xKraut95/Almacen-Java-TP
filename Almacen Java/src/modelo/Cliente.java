@@ -64,4 +64,29 @@ public class Cliente {
 
 	}
 	
+    public boolean validarSexo(char sexo)
+    {
+    	
+    	Cliente Cliente1 = new Cliente("Romanov", "Ignar", 39107542, ' ');
+    	Cliente1.setSexo(sexo);
+    	boolean estado = false;
+
+    	if (Cliente1.sexo == 'm')
+    	{
+    		System.out.println("Masculino");
+    		estado= true;
+    		return estado;
+    	}
+    	if (Cliente1.sexo == 'f')
+    	{
+    		System.out.println("Femenino");
+    		estado = true;
+    		return estado;
+    	}
+    	else 
+    	{
+    		System.out.println("Sexo no valido");
+    		return false;
+    	}
+    }
 }

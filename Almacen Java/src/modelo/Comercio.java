@@ -17,9 +17,23 @@ public class Comercio {
 	private ArrayList<Carrito> lstICarrito;
 
 	public Comercio(String nombreComercio, long cuit, double costoFijo, double costoPorK, int diaDescuento,
-			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) {
+			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
 		this.nombreComercio = nombreComercio;
-		this.cuit = cuit;
+		this.setCuit(cuit);
+		this.costoFijo = costoFijo;
+		this.costoPorK = costoPorK;
+		this.diaDescuento = diaDescuento;
+		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
+		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
+		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
+		this.lstArticulo = new ArrayList<Articulo>();
+		this.lstICarrito = new ArrayList<Carrito>();
+	}
+	
+	public Comercio(String nombreComercio, double costoFijo, double costoPorK, int diaDescuento,
+			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) {
+		super();
+		this.nombreComercio = nombreComercio;
 		this.costoFijo = costoFijo;
 		this.costoPorK = costoPorK;
 		this.diaDescuento = diaDescuento;
@@ -54,7 +68,13 @@ public class Comercio {
 		return cuit;
 	}
 
-	public void setCuit(long cuit) {
+	public void setCuit(long cuit) throws Exception {
+		String cuit1 = "" + cuit;
+		if (cuit1.length() != 11)
+			throw new Exception("Cuit no valido, No son 11 caracteres");
+		char[] cuitVector = cuit1.toCharArray();
+		if (cuitVector[0] != '3' & (cuitVector[1] != '0'))
+			throw new Exception("Cuit no valido, no es empresa");
 		this.cuit = cuit;
 	}
 
@@ -64,6 +84,7 @@ public class Comercio {
 
 	public void setCostoFijo(double costoFijo) {
 		this.costoFijo = costoFijo;
+
 	}
 
 	public double getCostoPorK() {
@@ -106,18 +127,14 @@ public class Comercio {
 				+ "Comercio: porcentajeDescuentoEfectivo" + this.porcentajeDescuentoEfectivo;
 	}
 
-	public boolean validarIdentificadorUnico(long cuit) {
-		String cuit1 = "" + cuit;
+	public boolean validarIdentificadorUnico(long cuit) throws Exception {
 
-		if (cuit1.length() != 11) {
-			System.out.println("El cuit no es valido, no tiene 11 caracteres");
-			return false;
-		}
+		String cuit1 = "" + cuit;
 
 		char[] cuitVector = cuit1.toCharArray();
 
-		Integer[] multiplos = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
-		Integer aux = 0;
+		int[] multiplos = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+		int aux = 0;
 
 		for (int i = 0; i < 10; i++) {
 			aux += Character.getNumericValue(cuitVector[i]) * multiplos[i];
@@ -129,11 +146,6 @@ public class Comercio {
 		if (aux == 10) {
 			aux = 3;
 		}
-
-		System.out.println(
-				"En esta parte va a tirar false si tras pasar el cuit como parametro no es igual, Y tira true si el cuit es igual al pasado x parametro.");
-
 		return Objects.equals(Character.getNumericValue(cuitVector[10]), aux);
 	}
-
 }

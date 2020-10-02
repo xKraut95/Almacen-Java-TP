@@ -172,8 +172,7 @@ public class Carrito {
 	}
 
 	public double calcularDescuentoEfectivo(double porcentajeDescuentoEfectivo) {
-		double descuento = calcularTotal() * (porcentajeDescuentoEfectivo / 100);
-		return descuento;
+		return calcularTotal() * (porcentajeDescuentoEfectivo / 100);
 	}
 
 	public double calcularDescuentoCarrito(int diaDescuento, double porcentajeDescuento,

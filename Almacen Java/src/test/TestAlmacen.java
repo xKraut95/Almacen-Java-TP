@@ -11,7 +11,7 @@ import modelo.Cliente;
 
 public class TestAlmacen {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		LocalDate fecha = LocalDate.now();
 		LocalTime hora = LocalTime.now();
@@ -33,7 +33,6 @@ public class TestAlmacen {
 		}catch (Exception e) {
 			System.out.println("Excepción: " + e.getMessage());
 		}
-
 // BLOQUE DEL CARRITO
 		try {
 			carrito.agregarAlCarrito(art1, 1);
@@ -88,9 +87,19 @@ public class TestAlmacen {
 //TOTAL FINAL
 		System.out.println("Total final: " + carrito.totalAPagarCarrito());
 //VALIDACIONES
-		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
-		System.out.println(Almacen.validarIdentificadorUnico(30242112322L));
-
+		Comercio Almacen = new Comercio("Almacen Granate", 2, 4, 5, 2, 4);
+		try {
+			Almacen.setCuit(3023232L);
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			Almacen.setCuit(30112233445L);
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		System.out.println(Almacen.getCuit());
+		System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 	}
 
 }
