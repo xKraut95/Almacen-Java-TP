@@ -48,6 +48,12 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
+		try {
+			Almacen.setCuit(12223344556L);
+			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
 
 	}
 
