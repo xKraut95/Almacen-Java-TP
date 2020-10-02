@@ -70,6 +70,9 @@ public class Comercio {
 		if (cuit1.length() != 11)
 			throw new Exception("Cuit no valido, No son 11 caracteres");
 		this.cuit = cuit;
+		char[] cuitVector = cuit1.toCharArray();
+		if (cuitVector[0] != '3' & (cuitVector[1] != '0'))
+			throw new Exception("Cuit no valido, no es empresa");
 	}
 
 	public double getCostoFijo() {
@@ -140,7 +143,6 @@ public class Comercio {
 		if (aux == 10) {
 			aux = 3;
 		}
-
 		System.out.println("Aqui devuelve true si el codigo es igual al cuit pasado x parametro, y false si no lo es");
 		return Objects.equals(Character.getNumericValue(cuitVector[10]), aux);
 	}

@@ -33,17 +33,16 @@ public class TestAlmacen {
 		try {
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 
-			Almacen.setCuit(3012L);
+			Almacen.setCuit(3023232L);
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
 		try {
-
 			Almacen.setCuit(30112233445L);
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 
-			Almacen.setCuit(1122334455L);
+			Almacen.setCuit(12223344556L);
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 
 		} catch (Exception e) {
