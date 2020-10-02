@@ -65,7 +65,10 @@ public class Comercio {
 		return cuit;
 	}
 
-	public void setCuit(long cuit)  {
+	public void setCuit(long cuit) throws Exception {
+		String cuit1 = "" + cuit;
+		if (cuit1.length() != 11)
+			throw new Exception("Cuit no valido, No son 11 caracteres");
 		this.cuit = cuit;
 	}
 
@@ -75,7 +78,7 @@ public class Comercio {
 
 	public void setCostoFijo(double costoFijo) {
 		this.costoFijo = costoFijo;
-		
+
 	}
 
 	public double getCostoPorK() {
@@ -119,10 +122,8 @@ public class Comercio {
 	}
 
 	public boolean validarIdentificadorUnico(long cuit) throws Exception {
+
 		String cuit1 = "" + cuit;
-
-		if (cuit1.length() != 11) throw new Exception ("Cuit no valido, No son 11 caracteres");
-
 
 		char[] cuitVector = cuit1.toCharArray();
 
@@ -139,8 +140,8 @@ public class Comercio {
 		if (aux == 10) {
 			aux = 3;
 		}
-		
-		System.out.println("Aqui devuelve true si el codigo es igual al parametro pasado, y false si no lo es");
+
+		System.out.println("Aqui devuelve true si el codigo es igual al cuit pasado x parametro, y false si no lo es");
 		return Objects.equals(Character.getNumericValue(cuitVector[10]), aux);
 	}
 }
