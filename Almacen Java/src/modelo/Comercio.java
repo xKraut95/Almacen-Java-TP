@@ -68,11 +68,11 @@ public class Comercio {
 	public void setCuit(long cuit) throws Exception {
 		String cuit1 = "" + cuit;
 		if (cuit1.length() != 11)
-			throw new Exception("Cuit no valido, No son 11 caracteres");
-		this.cuit = cuit;
+		throw new Exception("Cuit no valido, No son 11 caracteres");
 		char[] cuitVector = cuit1.toCharArray();
 		if (cuitVector[0] != '3' & (cuitVector[1] != '0'))
 			throw new Exception("Cuit no valido, no es empresa");
+		this.cuit = cuit;
 	}
 
 	public double getCostoFijo() {
