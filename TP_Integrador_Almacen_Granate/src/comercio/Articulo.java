@@ -69,10 +69,12 @@ public class Articulo {
 
 		// Algoritmo para Validar Dígito Verificador
 		/*
-		 * Paso 1: Sumar digitos de las posiciones pares Paso 2: Sumar dígitos de las
-		 * posiciones impares Paso 3: Multiplicar por 3 el valor obtenido del paso 2
-		 * Paso 4: Sumar paso 1 y 3 Paso 5: Se redondea el resultado del paso 4 para que
-		 * sea multiplo de 100 Paso 6: Resta de paso 5 y 4
+		 * Paso 1: Sumar digitos de las posiciones pares.
+		 * Paso 2: Sumar dígitos de las posiciones impares.
+		 * Paso 3: Multiplicar por 3 el valor obtenido del paso 2.
+		 * Paso 4: Sumar paso 1 y 3.
+		 * Paso 5: Se redondea el resultado del paso 4 para que sea multiplo de 100.
+		 * Paso 6: Resta paso 5 y 4.
 		 */
 
 		// Asignamos Los valores del codigo de barra a cada posicion del nuevo array
