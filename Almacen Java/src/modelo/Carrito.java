@@ -97,11 +97,7 @@ public class Carrito {
 	public List<ItemCarrito> getLstItemCarrito() {
 		return lstItemCarrito;
 	}
-
-	public void setLstItemCarrito(List<ItemCarrito> listaItem) {
-		this.lstItemCarrito = listaItem;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Carrito {id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", cerrado=" + cerrado + ", descuento="
@@ -109,36 +105,32 @@ public class Carrito {
 				+ lstItemCarrito + "}";
 
 	}
-
+		
 	public ItemCarrito traerItemCarrito(Articulo articulo) {
-		ItemCarrito aux = new ItemCarrito(articulo, 0);// = itCart;
-		boolean band = false;
+		ItemCarrito aux = null;
+		boolean encontrado = false;
 		int i = 0;
 		Iterator<ItemCarrito> iterador = lstItemCarrito.iterator();
-
-		while ((iterador.hasNext()) && (band == false)) {
-			if (iterador.next().getArticulo().getId() == articulo.getId()) {
-				band = true;
+		
+		while ((iterador.hasNext()) && (!encontrado)) {
+			if (iterador.next().getArticulo().equals(articulo)) {
+				encontrado = true;
 				aux = lstItemCarrito.get(i);
 			}
 			i++;
-		}
-
-		if (band == false)
-			return null;
-		else
-			return aux;
+		}	
+		return aux;
 	}
 
 	public boolean agregarAlCarrito(Articulo articulo, int cantidad) {
 		ItemCarrito aux = traerItemCarrito(articulo);
 		if (aux == null)
-			return lstItemCarrito.add(new ItemCarrito(articulo, cantidad));
+			lstItemCarrito.add(new ItemCarrito(articulo, cantidad));
 		else {
 			int sumaDeCantArticulo = aux.getCantidad() + cantidad;
 			aux.setCantidad(sumaDeCantArticulo);
-			return true;
 		}
+		return true;
 	}
 
 	public boolean eliminarItem(Articulo articulo, int cantidad) throws Exception {
@@ -150,7 +142,7 @@ public class Carrito {
 				int restaCantArticulo = aux.getCantidad() - cantidad;
 				aux.setCantidad(restaCantArticulo);
 			} else {
-				return lstItemCarrito.remove(aux);
+				lstItemCarrito.remove(aux);
 			}
 		}
 		return true;
@@ -180,8 +172,7 @@ public class Carrito {
 	}
 
 	public double calcularDescuentoEfectivo(double porcentajeDescuentoEfectivo) {
-		double descuento = calcularTotal() * (porcentajeDescuentoEfectivo / 100);
-		return descuento;
+		return calcularTotal() * (porcentajeDescuentoEfectivo / 100);
 	}
 
 	public double calcularDescuentoCarrito(int diaDescuento, double porcentajeDescuento,

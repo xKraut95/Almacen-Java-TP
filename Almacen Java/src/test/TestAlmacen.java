@@ -11,7 +11,7 @@ import modelo.Cliente;
 
 public class TestAlmacen {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		LocalDate fecha = LocalDate.now();
 		LocalTime hora = LocalTime.now();
@@ -31,7 +31,6 @@ public class TestAlmacen {
 			art4.setCodBarras("7790387000856");
 			art5.setCodBarras("7613035068414");
 		}
-
 		catch (Exception e) {
 			System.out.println("Excepción: " + e.getMessage());
 		}
@@ -92,7 +91,5 @@ public class TestAlmacen {
 //VALIDACIONES
 		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
 		System.out.println(Almacen.validarIdentificadorUnico(30242112322L));
-
 	}
-
 }
