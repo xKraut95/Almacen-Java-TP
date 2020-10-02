@@ -32,7 +32,10 @@ public class TestAlmacen {
 		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
 		try {
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
-
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
 			Almacen.setCuit(3023232L);
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 		} catch (Exception e) {
@@ -42,14 +45,11 @@ public class TestAlmacen {
 			Almacen.setCuit(30112233445L);
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 
-			Almacen.setCuit(12223344556L);
-			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
-
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
 		try {
-			Almacen.setCuit(12223344556L);
+			Almacen.setCuit(12223344456L);
 			System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
