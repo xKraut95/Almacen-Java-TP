@@ -4,11 +4,11 @@ public class Contacto {
 	private String email;
 	private String celular;
 	private Ubicacion ubicacion;
-	
+
 	public Contacto(String email, String celular, Ubicacion ubicacion) {
-		this.email=email;
-		this.celular=celular;
-		this.ubicacion=ubicacion;
+		this.email = email;
+		this.celular = celular;
+		this.ubicacion = ubicacion;
 	}
 
 	public String getEmail() {
@@ -34,15 +34,16 @@ public class Contacto {
 	public void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-	
+
 	public boolean equals(Contacto c) {
-		return ((this.email == c.getEmail()) && (this.celular == c.getCelular()) && (this.ubicacion.equals(c.getUbicacion())));
-		
+		return ((this.email == c.getEmail()) && (this.celular == c.getCelular())
+				&& (this.ubicacion.equals(c.getUbicacion())));
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Email: " + this.email + " Celular:" + this.celular + " " + ubicacion.toString();
 	}
-	
+
 }

@@ -3,10 +3,10 @@ package modelo;
 public class Ubicacion {
 	private double latitud;
 	private double longitud;
-	
+
 	public Ubicacion(double latitud, double longitud) {
-		this.latitud=latitud;
-		this.longitud=longitud;
+		this.latitud = latitud;
+		this.longitud = longitud;
 	}
 
 	public double getLatitud() {
@@ -27,16 +27,12 @@ public class Ubicacion {
 
 	public boolean equals(Ubicacion u) {
 		return ((this.latitud == u.getLatitud()) && (this.longitud == u.getLongitud()));
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Ubicación: Latitud:" + this.latitud + " Longitud:" + this.longitud;
 	}
-	
-	
-	
+
 }
-
-
