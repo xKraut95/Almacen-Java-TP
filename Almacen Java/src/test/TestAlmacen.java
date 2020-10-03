@@ -88,9 +88,26 @@ public class TestAlmacen {
 //TOTAL FINAL
 		System.out.println("Total final: " + carrito.totalAPagarCarrito());
 //VALIDACIONES
-		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
-		System.out.println(Almacen.validarIdentificadorUnico(30242112322L));
+		Cliente cliente1 = new Cliente("Del Rancho", "Cornelio", 12345678L, 'm');
+		try {
+			System.out.println(cliente1.validarIdentificadorUnico(cliente1.getDni()));
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			cliente1.setDni(123456789L);
+			System.out.println(cliente1.validarIdentificadorUnico(cliente1.getDni()));
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			cliente1.setDni(1234567L);
+			System.out.println(cliente1.validarIdentificadorUnico(cliente1.getDni()));
 
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+	
 	}
 
 }

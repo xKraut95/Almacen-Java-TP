@@ -33,7 +33,12 @@ public class Cliente {
 		return dni;
 	}
 
-	public void setDni(long dni) {
+	public void setDni(long dni)throws Exception { 
+		String dniString = Long.toString(dni);
+		if (dniString.length() != 8)
+			throw new Exception("DNI no valido, No son 8 caracteres");
+		if (!validarIdentificadorUnico(dni))
+			throw new Exception("Error: DNI Invalido");
 		this.dni = dni;
 	}
 
@@ -54,8 +59,8 @@ public class Cliente {
 		return this.dni==c.getDni();
 	}
 
-	public boolean validarIdentificadorUnico() {
-		String dniString = Long.toString(this.dni);
+	public boolean validarIdentificadorUnico(long dni) throws Exception {
+		String dniString = Long.toString(dni);
 		String numeroDni = "";
 		String dniComparado = "";
 		String[] unoAlNueve = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
