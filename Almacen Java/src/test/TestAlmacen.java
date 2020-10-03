@@ -91,7 +91,7 @@ public class TestAlmacen {
 		System.out.println(cliente2);
 
 //INSTANCIA DE CARRITO
-		Carrito carrito = new Carrito(1, fecha, hora, true, 1, cliente);
+		Carrito carrito = new Carrito(1, fecha, hora, false, 1, cliente);
 
 //DATOS DE CARRITO
 		System.out.println();
@@ -167,6 +167,7 @@ public class TestAlmacen {
 			carrito.agregarAlCarrito(art3, 3);
 			carrito.agregarAlCarrito(art4, 4);
 			carrito.agregarAlCarrito(art5, 5);
+			carrito.agregarAlCarrito(art3, 3);
 
 		} catch (Exception e) {
 
@@ -183,7 +184,7 @@ public class TestAlmacen {
 			System.out.println(item);
 		}
 
-//ELIMINAR UN ARTICULO DEL CARRITO
+//ELIMINAR ARTICULOS DEL CARRITO
 		try {
 			carrito.eliminarItem(art1, 1);
 		} catch (Exception e) {
@@ -194,16 +195,24 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("\nExcepcion: " + e.getMessage() + "\n");
 		}
+		try {
+			carrito.eliminarItem(art5, 2);
+		} catch (Exception e) {
+			System.out.println("\nExcepcion: " + e.getMessage() + "\n");
+		}
 
 //TRAER ARTICULO INDIVIDUALMENTE
 		System.out.println("Item solicitado: \n" + carrito.traerItemCarrito(art5));
+		
+//UNA VEZ HECHO LOS CAMBIOS NECESARIOS, SE CIERRA EL CARRITO
+		carrito.setCerrado(true);
 
-//PRODUCTOS DESPUES DE LAS MODIFICACIONES
-		System.out.println("Carrito:\n");
-		for (ItemCarrito item : carrito.getLstItemCarrito()) {
-			System.out.println(item);
-		}
-
+//PRODUCTOS DESPUES DE LAS MODIFICACIONES, IMPRESION DE CARRITO COMPLETO
+		System.out.println(almacen.separador());
+		System.out.println(carrito);
+		System.out.println(almacen.separador());
+		
+		if(carrito.isCerrado()) { //Si, is cerrado es True
 //TOTAL Y SUBTOTAL
 		System.out.println();
 		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(0).getArticulo() + ": "
@@ -228,6 +237,7 @@ public class TestAlmacen {
 
 //TOTAL FINAL
 		System.out.println("Total final: " + carrito.totalAPagarCarrito());
+		}
 
 	}
 

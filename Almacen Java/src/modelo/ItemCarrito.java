@@ -33,7 +33,7 @@ public class ItemCarrito {
 
 	@Override
 	public String toString() {
-		return "\t\tItemCarrito [Articulo = " + articulo + ", Cantidad = " + cantidad + "]";
+		return "\t   ItemCarrito [Articulo = " + articulo + ", Cantidad = " + cantidad + "]"+"\n";
 	}
 
 }

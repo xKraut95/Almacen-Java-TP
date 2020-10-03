@@ -66,7 +66,7 @@ public class Carrito {
 		return cerrado;
 	}
 
-	public void setCerrado(boolean cerrado, List<ItemCarrito> items) {
+	public void setCerrado(boolean cerrado) {
 		this.cerrado = cerrado;
 	}
 
@@ -102,18 +102,12 @@ public class Carrito {
 		this.lstItemCarrito = listaItem;
 	}
 
-	/*@Override
-	public String toString() {
-		return "Carrito {id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", cerrado=" + cerrado + ", descuento="
-				+ descuento + ", \n cliente=" + cliente + ", entrega=" + entrega + ", \n lstItemCarrito="
-				+ lstItemCarrito + "}";
-		
-
-	}*/
+	@Override
+	
 	public String toString() {
 		return "Carrito: " + id + "\n\tFecha = " + fecha + "\n\tHora = " + hora + "\n\tCerrado = " 
 				+ cerrado + "\n\tDescuento = "
-				+ descuento + "\n\tCliente = " + cliente + "\n\tEntrega = " + entrega + ",\n\tLista de Items = "
+				+ descuento + "\n\tCliente = " + cliente + "\n\tEntrega = " + entrega + ",\n\tLista de Items = \n"
 				+ lstItemCarrito;
 	}
 
