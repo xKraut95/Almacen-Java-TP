@@ -61,7 +61,6 @@ public class Cliente {
 		String[] unoAlNueve = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 		int i, j;
 		boolean flag = false;
-		
 		if(dniString.length()==8) {
 			for(i=0;i<8;i++) {
 				numeroDni = dniString.substring(i, i+1);

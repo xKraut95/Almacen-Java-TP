@@ -37,10 +37,6 @@ public abstract class Entrega {
 	public void setEfectivo(boolean efectivo) {
 		this.efectivo = efectivo;
 	}
-
-	public boolean equals(Entrega e) {
-		return this.id == e.getId();
-	}	
 	
 	@Override
 	public String toString() {
