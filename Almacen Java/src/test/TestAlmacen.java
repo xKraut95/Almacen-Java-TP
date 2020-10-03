@@ -107,6 +107,14 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
+		
+		Cliente cliente2 = new Cliente("Fulanito", "Cosme", 12345678910L, 'm');
+		try {
+			System.out.println(cliente2.validarIdentificadorUnico(cliente2.getDni()));
+
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
 	
 	}
 
