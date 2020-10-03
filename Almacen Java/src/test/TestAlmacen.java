@@ -213,13 +213,32 @@ public class TestAlmacen {
 		System.out.println(almacen.separador());
 		
 		if(carrito.isCerrado()) { //Si, is cerrado es True
-//TOTAL Y SUBTOTAL
-		System.out.println();
+			
+//SUBTOTAL
+		System.out.println("SubTotal Por Item");
+		System.out.println(almacen.separador());
+		
 		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(0).getArticulo() + ": "
 				+ carrito.getLstItemCarrito().get(0).calcularSubTotal());
+		
+		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(1).getArticulo() + ": "
+				+ carrito.getLstItemCarrito().get(1).calcularSubTotal());
+		
+		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(2).getArticulo() + ": "
+				+ carrito.getLstItemCarrito().get(2).calcularSubTotal());
+		
+		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(3).getArticulo() + ": "
+				+ carrito.getLstItemCarrito().get(3).calcularSubTotal());
+		
+//TOTAL A PAGAR
+		System.out.println();
+		System.out.println(almacen.separador());
 		System.out.println("Total: " + carrito.calcularTotal());
+		System.out.println(almacen.separador());
+		
 
 //BLOQUE DE DIA DE DESCUENTO NEGATIVO
+		System.out.println();
 		if (carrito.calcularDescuentoDia(3, 10d) > 0) {
 			System.out.println("El descuento por el dia Miercoles es: " + carrito.calcularDescuentoDia(3, 10d));
 		} else {
