@@ -61,7 +61,7 @@ public class TestAlmacen {
 
 		Cliente cliente = new Cliente("Soloduja", "Ignacio", 42678234, 'm');
 		try {
-			cliente.setDni(547);// No funciona cuando NO es numerico
+			cliente.setDni(547);
 		} catch (Exception e) {
 			System.out.println("Excepcion: Valor Asignado no es numérico");
 		}
@@ -103,55 +103,49 @@ public class TestAlmacen {
 
 // INSTANCIA DE ARTICULOS
 		Articulo art1 = new Articulo(1, "Alcohol en Gel", "7790139000196", 36.50);
-		Articulo art2 = new Articulo(2, "Harina 'Favorita'","7790070507235", 75.25);
+		Articulo art2 = new Articulo(2, "Harina 'Favorita'", "7790070507235", 75.25);
 		Articulo art3 = new Articulo(3, "Azucar 'Ledesma'", "7792540260138", 40);
-		Articulo art4 = new Articulo(4, "Mate Cocido 'Taragüi'","7790387000856", 84.75);
-		Articulo art5 = new Articulo(5, "Café 'Dolca","7613035068414", 60.25);
-		
-		
+		Articulo art4 = new Articulo(4, "Mate Cocido 'Taragüi'", "7790387000856", 84.75);
+		Articulo art5 = new Articulo(5, "Café 'Dolca", "7613035068414", 60.25);
+
 //VALIDACION DE CODIGO DE BARRA DE LOS ARTICULOS
 		System.out.println("Validación de Código de Barras");
 		System.out.println(almacen.separador());
 		try {
 
 			art1.setCodBarras("7790201962683");
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Excepción (art1): " + e.getMessage());
 		}
-		
-		try  {
-		art2.setCodBarras("7791234507235");
-		}
-		catch (Exception e) {
+
+		try {
+			art2.setCodBarras("7791234507235");
+		} catch (Exception e) {
 			System.out.println("Excepción (art2): " + e.getMessage());
 		}
-		
+
 		try {
-		art3.setCodBarras("7797654260138");
-		}
-		catch (Exception e) {
+			art3.setCodBarras("7797654260138");
+		} catch (Exception e) {
 			System.out.println("Excepción (art3): " + e.getMessage());
 		}
-		
+
 		try {
-		art4.setCodBarras("7790387000856");
-		}
-		catch (Exception e) {
+			art4.setCodBarras("7790387000856");
+		} catch (Exception e) {
 			System.out.println("Excepción (art4): " + e.getMessage());
 		}
-		
+
 		try {
-		art5.setCodBarras("7613035068414");
-		}
-		catch (Exception e) {
+			art5.setCodBarras("7613035068414");
+		} catch (Exception e) {
 			System.out.println("Excepción (art5): " + e.getMessage());
 		}
-		
+
 		System.out.println();
-		
+
 		System.out.println(almacen.separador());
-		
+
 		System.out.println("Impresion de Articulos Instanciados");
 		System.out.println(art1);
 		System.out.println(art2);
@@ -159,7 +153,6 @@ public class TestAlmacen {
 		System.out.println(art4);
 		System.out.println(art5);
 
-		
 // AGREGAR AL CARRITO
 		try {
 			carrito.agregarAlCarrito(art1, 1);
@@ -203,7 +196,7 @@ public class TestAlmacen {
 
 //TRAER ARTICULO INDIVIDUALMENTE
 		System.out.println("Item solicitado: \n" + carrito.traerItemCarrito(art5));
-		
+
 //UNA VEZ HECHO LOS CAMBIOS NECESARIOS, SE CIERRA EL CARRITO
 		carrito.setCerrado(true);
 
@@ -211,51 +204,50 @@ public class TestAlmacen {
 		System.out.println(almacen.separador());
 		System.out.println(carrito);
 		System.out.println(almacen.separador());
-		
-		if(carrito.isCerrado()) { //Si, is cerrado es True
-			
+
+		if (carrito.isCerrado()) { // Si, is cerrado() es True
+
 //SUBTOTAL
-		System.out.println("SubTotal Por Item");
-		System.out.println(almacen.separador());
-		
-		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(0).getArticulo() + ": "
-				+ carrito.getLstItemCarrito().get(0).calcularSubTotal());
-		
-		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(1).getArticulo() + ": "
-				+ carrito.getLstItemCarrito().get(1).calcularSubTotal());
-		
-		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(2).getArticulo() + ": "
-				+ carrito.getLstItemCarrito().get(2).calcularSubTotal());
-		
-		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(3).getArticulo() + ": "
-				+ carrito.getLstItemCarrito().get(3).calcularSubTotal());
-		
+			System.out.println("SubTotal Por Item");
+			System.out.println(almacen.separador());
+
+			System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(0).getArticulo() + ": "
+					+ carrito.getLstItemCarrito().get(0).calcularSubTotal());
+
+			System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(1).getArticulo() + ": "
+					+ carrito.getLstItemCarrito().get(1).calcularSubTotal());
+
+			System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(2).getArticulo() + ": "
+					+ carrito.getLstItemCarrito().get(2).calcularSubTotal());
+
+			System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(3).getArticulo() + ": "
+					+ carrito.getLstItemCarrito().get(3).calcularSubTotal());
+
 //TOTAL A PAGAR
-		System.out.println();
-		System.out.println(almacen.separador());
-		System.out.println("Total: " + carrito.calcularTotal());
-		System.out.println(almacen.separador());
-		
+			System.out.println();
+			System.out.println(almacen.separador());
+			System.out.println("Total: " + carrito.calcularTotal());
+			System.out.println(almacen.separador());
 
 //BLOQUE DE DIA DE DESCUENTO NEGATIVO
-		System.out.println();
-		if (carrito.calcularDescuentoDia(3, 10d) > 0) {
-			System.out.println("El descuento por el dia Miercoles es: " + carrito.calcularDescuentoDia(3, 10d));
-		} else {
-			System.out.println("Miercoles no es un dia de descuento");
-		}
+			System.out.println();
+			if (carrito.calcularDescuentoDia(3, 10d) > 0) {
+				System.out.println("El descuento por el dia Miercoles es: " + carrito.calcularDescuentoDia(3, 10d));
+			} else {
+				System.out.println("Miercoles no es un dia de descuento");
+			}
 //BLOQUE DE DIA DE DESCUENTO AFIRMATIVO
-		if (carrito.calcularDescuentoDia(2, 10d) > 0) {
-			System.out.println("El descuento por el dia Sabado es: " + carrito.calcularDescuentoDia(2, 10d));
-		} else {
-			System.out.println(carrito.getFecha().getDayOfWeek() + " no es un dia de descuento");
-		}
+			if (carrito.calcularDescuentoDia(2, 10d) > 0) {
+				System.out.println("El descuento por el dia Sabado es: " + carrito.calcularDescuentoDia(2, 10d));
+			} else {
+				System.out.println(carrito.getFecha().getDayOfWeek() + " no es un dia de descuento");
+			}
 //DESCUENTO MAYOR
-		System.out.println("El descuento por pagar en efectivo es: " + carrito.calcularDescuentoEfectivo(50d));
-		System.out.println("El mayor descuento es: " + carrito.calcularDescuentoCarrito(2, 10d, 50d));
+			System.out.println("El descuento por pagar en efectivo es: " + carrito.calcularDescuentoEfectivo(50d));
+			System.out.println("El mayor descuento es: " + carrito.calcularDescuentoCarrito(2, 10d, 50d));
 
 //TOTAL FINAL
-		System.out.println("Total final: " + carrito.totalAPagarCarrito());
+			System.out.println("Total final: " + carrito.totalAPagarCarrito());
 		}
 
 	}

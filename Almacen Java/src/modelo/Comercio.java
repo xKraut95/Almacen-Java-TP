@@ -122,12 +122,12 @@ public class Comercio {
 	public String toString() {
 		return "Datos de Comercio\n\tNombre: " + this.nombreComercio + "\n\tCuit: " + this.cuit + "\n\tCostoFijo: "
 				+ this.costoFijo + "\n\tCostoPorKm: " + this.costoPorKm + "\n\tDia de Descuento: " + this.diaDescuento
-				+ "\n\tPorcentajeDescuentoDia: " + this.porcentajeDescuentoDia
-				+ "\n\tPorcentajeDescuentoEfectivo: " + this.porcentajeDescuentoEfectivo;
+				+ "\n\tPorcentajeDescuentoDia: " + this.porcentajeDescuentoDia + "\n\tPorcentajeDescuentoEfectivo: "
+				+ this.porcentajeDescuentoEfectivo;
 	}
-	
+
 	public String separador() {
-		return(">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<");
+		return (">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<");
 	}
 
 	public boolean validarIdentificadorUnico(long cuit) throws Exception {
