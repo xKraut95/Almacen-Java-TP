@@ -67,7 +67,7 @@ public class Envio extends Entrega {
 				getUbicacion().getLongitud());
 		setCosto(distancia * costoPorKm + costoFijo);
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Envio [horaHasta=" + horaHasta + ", horaDesde=" + horaDesde + ", costo=" + costo + ", ubicacion="

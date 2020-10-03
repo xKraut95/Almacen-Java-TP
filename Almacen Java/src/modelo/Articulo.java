@@ -52,6 +52,10 @@ public class Articulo {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+	
+	public boolean equals(Articulo a) {
+		return ((this.id == a.getId()) && (this.codBarras.equals(a.getCodBarras())));
+	}
 
 	@Override
 	public String toString() {

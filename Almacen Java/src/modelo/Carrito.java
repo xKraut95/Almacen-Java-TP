@@ -97,6 +97,10 @@ public class Carrito {
 	public List<ItemCarrito> getLstItemCarrito() {
 		return lstItemCarrito;
 	}
+	
+	public boolean equals(Carrito c) {
+		return this.id == c.getId();
+	}
 
 	@Override
 	public String toString() {

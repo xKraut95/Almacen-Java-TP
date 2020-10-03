@@ -56,6 +56,10 @@ public class DiaRetiro {
 	public void setIntervalo(int intervalo) {
 		this.intervalo = intervalo;
 	}
+	
+	public boolean equals(DiaRetiro d) {
+		return this.id == d.getId();
+	}
 
 	@Override
 	public String toString() {

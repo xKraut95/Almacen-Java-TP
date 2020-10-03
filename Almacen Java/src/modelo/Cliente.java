@@ -49,19 +49,36 @@ public class Cliente {
 		return "Cliente:Apellido" + this.apellido + "Cliente: Nombre" + this.nombre + "Cliente: dni" + this.dni
 				+ "Cliente: sexo" + this.sexo;
 	}
+	
+	public boolean equals(Cliente c) {
+		return this.dni==c.getDni();
+	}
 
 	public boolean validarIdentificadorUnico() {
 		String dniString = Long.toString(this.dni);
-
-		if (dniString.length() == 8) {
-			return true;
+		String numeroDni = "";
+		String dniComparado = "";
+		String[] unoAlNueve = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		int i, j;
+		boolean flag = false;
+		
+		if(dniString.length()==8) {
+			for(i=0;i<8;i++) {
+				numeroDni = dniString.substring(i, i+1);
+								
+				for(j=0; j<unoAlNueve.length; j++) {
+					if(numeroDni.equals(unoAlNueve[j])) {
+						dniComparado = dniComparado + unoAlNueve[j];
+					}
+						
+				}
+			}
 		}
-
-		else {
-			return false;
-
+				
+		if(dniComparado.length() == 8) {
+			flag = true;
 		}
-
+				
+		return flag;
 	}
-	
 }

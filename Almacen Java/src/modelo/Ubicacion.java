@@ -27,7 +27,6 @@ public class Ubicacion {
 
 	public boolean equals(Ubicacion u) {
 		return ((this.latitud == u.getLatitud()) && (this.longitud == u.getLongitud()));
-
 	}
 
 	@Override

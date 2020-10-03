@@ -36,8 +36,7 @@ public class Contacto {
 	}
 
 	public boolean equals(Contacto c) {
-		return ((this.email == c.getEmail()) && (this.celular == c.getCelular())
-				&& (this.ubicacion.equals(c.getUbicacion())));
+		return ((this.email == c.getEmail()) && (this.celular == c.getCelular()));
 
 	}
 

@@ -29,6 +29,10 @@ public class ItemCarrito {
 		double calculo = articulo.getPrecio() * cantidad;
 		return calculo;
 	}
+	
+	public boolean equals(ItemCarrito ic) {
+		return ((this.cantidad == ic.getCantidad()) && (this.articulo.equals(ic.getArticulo())));
+	}
 
 	@Override
 	public String toString() {

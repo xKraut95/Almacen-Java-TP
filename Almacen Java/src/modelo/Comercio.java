@@ -97,6 +97,10 @@ public class Comercio {
 	public void setPorcentajeDescuentoEfectivo(int porcentajeDescuentoEfectivo) {
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
 	}
+	
+	public boolean equals(Comercio c) {
+		return ((this.cuit == c.getCuit()) && (this.nombreComercio.equals(c.getNombreComercio())));
+	}
 
 	@Override
 	public String toString() {

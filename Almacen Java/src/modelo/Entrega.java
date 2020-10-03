@@ -38,6 +38,10 @@ public abstract class Entrega {
 		this.efectivo = efectivo;
 	}
 
+	public boolean equals(Entrega e) {
+		return this.id == e.getId();
+	}	
+	
 	@Override
 	public String toString() {
 		return "Entrega [id=" + id + ", fecha=" + fecha + ", efectivo=" + efectivo + "]";

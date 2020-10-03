@@ -28,6 +28,10 @@ public abstract class Actor {
 	public Ubicacion traerUbicacion() {
 		return contacto.getUbicacion();
 	}
+	
+	public boolean equals(Actor a) {
+		return this.id == a.getId();
+	}
 
 	@Override
 	public String toString() {
