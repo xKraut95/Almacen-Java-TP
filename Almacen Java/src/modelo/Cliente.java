@@ -5,11 +5,24 @@ public class Cliente {
 	private String nombre;
 	private long dni;
 	private char sexo;
-
-	public Cliente(String apellido, String nombre, long dni, char sexo) {
+/*
+	public Cliente(String apellido, String nombre, long dni, char sexo) throws NumberFormatException, Exception {
 		this.apellido = apellido;
 		this.nombre = nombre;
-		this.dni = dni;
+		this.setDni(dni);
+		this.sexo = sexo;
+	}*/
+
+	//public Cliente(String apellido, String nombre, char sexo) throws NumberFormatException, Exception {
+	//	this.apellido = apellido;
+	//	this.nombre = nombre;
+	//	this.setDni(dni);
+	//	this.sexo = sexo;
+	//}
+	public Cliente(String apellido, String nombre, long dni, char sexo)throws Exception {
+		this.apellido = apellido;
+		this.nombre = nombre;
+		this.setDni(dni);
 		this.sexo = sexo;
 	}
 
@@ -33,7 +46,22 @@ public class Cliente {
 		return dni;
 	}
 
-	public void setDni(long dni) {
+	/*public void setDni(long dni) throws NumberFormatException, Exception {
+		String dniString = Long.toString(dni);
+			if (dniString.length() != 8)
+				throw new Exception("DNI no valido, No son 8 caracteres");
+			if (!validarIdentificadorUnico(dni))
+				throw new Exception("Error: DNI Invalido");
+			this.dni = dni;
+	}*/
+	
+	
+	public void setDni(long dni)throws Exception { 
+		String dniString = Long.toString(dni);
+		if (dniString.length() != 8)
+			throw new Exception("DNI no valido, No son 8 caracteres");
+		if (!validarIdentificadorUnico(dni))
+			throw new Exception("Error: DNI Invalido");
 		this.dni = dni;
 	}
 
@@ -46,21 +74,51 @@ public class Cliente {
 	}
 
 	public String toString() {
-		return "Cliente:Apellido" + this.apellido + "Cliente: Nombre" + this.nombre + "Cliente: dni" + this.dni
-				+ "Cliente: sexo" + this.sexo;
+		return "Datos del Cliente\n\t\tApellido: " + this.apellido + "\n\t\tNombre: " + this.nombre 
+				+ "\n\t\tDni: " + this.dni
+				+ "\n\t\tSexo: " + this.sexo;
 	}
 
-	public boolean validarIdentificadorUnico() {
-		String dniString = Long.toString(this.dni);
+	//public boolean validarIdentificadorUnico() {
+	//	String dniString = Long.toString(this.dni);
+//
+	//	if (dniString.length() == 8) {
+	//		return true;
+	//	}
+//
+	//	else {
+	//		return false;
+//
+	//}
+	public boolean equals(Cliente c) {
+		return this.dni==c.getDni();
+	}
 
-		if (dniString.length() == 8) {
-			return true;
+	public boolean validarIdentificadorUnico(long dni) throws Exception {
+		String dniString = Long.toString(dni);
+		String numeroDni = "";
+		String dniComparado = "";
+		String[] unoAlNueve = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		int i, j;
+		boolean flag = false;
+		if(dniString.length()==8) {
+			for(i=0;i<8;i++) {
+				numeroDni = dniString.substring(i, i+1);
+								
+				for(j=0; j<unoAlNueve.length; j++) {
+					if(numeroDni.equals(unoAlNueve[j])) {
+						dniComparado = dniComparado + unoAlNueve[j];
+					}
+						
+				}
+			}
 		}
-
-		else {
-			return false;
-
+				
+		if(dniComparado.length() == 8) {
+			flag = true;
 		}
+				
+		return flag;
 
 	}
 	

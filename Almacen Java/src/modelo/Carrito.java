@@ -102,12 +102,19 @@ public class Carrito {
 		this.lstItemCarrito = listaItem;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "Carrito {id=" + id + ", fecha=" + fecha + ", hora=" + hora + ", cerrado=" + cerrado + ", descuento="
 				+ descuento + ", \n cliente=" + cliente + ", entrega=" + entrega + ", \n lstItemCarrito="
 				+ lstItemCarrito + "}";
+		
 
+	}*/
+	public String toString() {
+		return "Carrito: " + id + "\n\tFecha = " + fecha + "\n\tHora = " + hora + "\n\tCerrado = " 
+				+ cerrado + "\n\tDescuento = "
+				+ descuento + "\n\tCliente = " + cliente + "\n\tEntrega = " + entrega + ",\n\tLista de Items = "
+				+ lstItemCarrito;
 	}
 
 	public ItemCarrito traerItemCarrito(Articulo articulo) {

@@ -8,7 +8,7 @@ public class Comercio {
 	private String nombreComercio;
 	private long cuit;
 	private double costoFijo;
-	private double costoPorK;
+	private double costoPorKm;
 	private int diaDescuento;
 	private int porcentajeDescuentoDia;
 	private int porcentajeDescuentoEfectivo;
@@ -16,30 +16,40 @@ public class Comercio {
 	private ArrayList<Articulo> lstArticulo;
 	private ArrayList<Carrito> lstICarrito;
 
-	public Comercio(String nombreComercio, long cuit, double costoFijo, double costoPorK, int diaDescuento,
-			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) {
+	public Comercio(String nombreComercio, long cuit, double costoFijo, double costoPorKm, int diaDescuento,
+			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
 		this.nombreComercio = nombreComercio;
-		this.cuit = cuit;
+		this.setCuit(cuit);
 		this.costoFijo = costoFijo;
-		this.costoPorK = costoPorK;
+		this.costoPorKm = costoPorKm;
 		this.diaDescuento = diaDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
-		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
-		this.lstArticulo = new ArrayList<Articulo>();
-		this.lstICarrito = new ArrayList<Carrito>();
+
 	}
 
 	public ArrayList<DiaRetiro> getLstDiaRetiro() {
 		return lstDiaRetiro;
 	}
 
+	public void setLstDiaRetiro(ArrayList<DiaRetiro> lstDiaRetiro) {
+		this.lstDiaRetiro = lstDiaRetiro;
+	}
+
 	public ArrayList<Articulo> getLstArticulo() {
 		return lstArticulo;
 	}
 
+	public void setLstArticulo(ArrayList<Articulo> lstArticulo) {
+		this.lstArticulo = lstArticulo;
+	}
+
 	public ArrayList<Carrito> getLstICarrito() {
 		return lstICarrito;
+	}
+
+	public void setLstICarrito(ArrayList<Carrito> lstICarrito) {
+		this.lstICarrito = lstICarrito;
 	}
 
 	public String getNombreComercio() {
@@ -51,10 +61,19 @@ public class Comercio {
 	}
 
 	public long getCuit() {
+
 		return cuit;
 	}
 
-	public void setCuit(long cuit) {
+	public void setCuit(long cuit) throws Exception {
+		String cuit1 = "" + cuit;
+		if (cuit1.length() != 11)
+			throw new Exception("Cuit no valido. No son 11 caracteres");
+		char[] cuitVector = cuit1.toCharArray();
+		if (cuitVector[0] != '3' && (cuitVector[1] != '0'))
+			throw new Exception("Cuit no valido. No es empresa");
+		if (!validarIdentificadorUnico(cuit))
+			throw new Exception("Error: Cuit Invalido");
 		this.cuit = cuit;
 	}
 
@@ -64,14 +83,15 @@ public class Comercio {
 
 	public void setCostoFijo(double costoFijo) {
 		this.costoFijo = costoFijo;
+
 	}
 
-	public double getCostoPorK() {
-		return costoPorK;
+	public double getCostoPorKm() {
+		return costoPorKm;
 	}
 
-	public void setCostoPorK(double costoPorK) {
-		this.costoPorK = costoPorK;
+	public void setCostoPorKm(double costoPorKm) {
+		this.costoPorKm = costoPorKm;
 	}
 
 	public int getDiaDescuento() {
@@ -100,24 +120,24 @@ public class Comercio {
 
 	@Override
 	public String toString() {
-		return "Comercio: nombreComercio" + this.nombreComercio + "Comercio: cuit" + this.cuit + "Comercio: costoFijo"
-				+ this.costoFijo + "Comercio: costoPorK" + this.costoPorK + "Comercio: diaDescuento" + this.diaDescuento
-				+ "Comercio: porcentajeDescuentoDia" + this.porcentajeDescuentoDia
-				+ "Comercio: porcentajeDescuentoEfectivo" + this.porcentajeDescuentoEfectivo;
+		return "Datos de Comercio\n\tNombre: " + this.nombreComercio + "\n\tCuit: " + this.cuit + "\n\tCostoFijo: "
+				+ this.costoFijo + "\n\tCostoPorKm: " + this.costoPorKm + "\n\tDia de Descuento: " + this.diaDescuento
+				+ "\n\tPorcentajeDescuentoDia: " + this.porcentajeDescuentoDia
+				+ "\n\tPorcentajeDescuentoEfectivo: " + this.porcentajeDescuentoEfectivo;
+	}
+	
+	public String separador() {
+		return(">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<");
 	}
 
-	public boolean validarIdentificadorUnico(long cuit) {
-		String cuit1 = "" + cuit;
+	public boolean validarIdentificadorUnico(long cuit) throws Exception {
 
-		if (cuit1.length() != 11) {
-			System.out.println("El cuit no es valido, no tiene 11 caracteres");
-			return false;
-		}
+		String cuit1 = "" + cuit;
 
 		char[] cuitVector = cuit1.toCharArray();
 
-		Integer[] multiplos = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
-		Integer aux = 0;
+		int[] multiplos = { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+		int aux = 0;
 
 		for (int i = 0; i < 10; i++) {
 			aux += Character.getNumericValue(cuitVector[i]) * multiplos[i];
@@ -129,11 +149,6 @@ public class Comercio {
 		if (aux == 10) {
 			aux = 3;
 		}
-
-		System.out.println(
-				"En esta parte va a tirar false si tras pasar el cuit como parametro no es igual, Y tira true si el cuit es igual al pasado x parametro.");
-
 		return Objects.equals(Character.getNumericValue(cuitVector[10]), aux);
 	}
-
 }

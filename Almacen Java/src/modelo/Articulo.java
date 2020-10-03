@@ -55,7 +55,7 @@ public class Articulo {
 
 	@Override
 	public String toString() {
-		return "Articulo " + getId() + " (Nombre=" + getNombre() + ", Codigo de Barra=" + getCodBarras() + ", Precio="
+		return "Articulo " + getId() + " (Nombre = " + getNombre() + ", Codigo de Barra = " + getCodBarras() + ", Precio = "
 				+ getPrecio() + ")";
 	}
 

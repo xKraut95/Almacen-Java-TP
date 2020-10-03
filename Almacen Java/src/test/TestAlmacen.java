@@ -10,19 +10,83 @@ import modelo.Comercio;
 import modelo.Cliente;
 
 public class TestAlmacen {
+	
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws Exception {
+		
 		LocalDate fecha = LocalDate.now();
 		LocalTime hora = LocalTime.now();
-		Cliente cliente = new Cliente("Soloduja", "Ignacio", 12312312, 'm');
-		Carrito carrito = new Carrito(0, fecha, hora, true, 1, cliente);
+		
+//INSTANCIA DE COMERCIO
+		Comercio almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
+		
+		System.out.println(almacen.separador());
+		System.out.println("Escenario 1: Validaciones Cuit del Comercio");
+		System.out.println(almacen.separador());
+		
+//VALIDACIONES DE CUIT EN COMERCIO
+		try {
+			almacen.setCuit(30242112322L);
+			if (almacen.validarIdentificadorUnico(almacen.getCuit())){
+			System.out.println("Cuit de Comercio Válido");
+			}
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			almacen.setCuit(3023232L);
+			System.out.println(almacen.validarIdentificadorUnico(almacen.getCuit()));
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			almacen.setCuit(30112233445L);
+			System.out.println(almacen.validarIdentificadorUnico(almacen.getCuit()));
+
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			almacen.setCuit(12223344456L);
+			System.out.println(almacen.validarIdentificadorUnico(almacen.getCuit()));
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		
+//DATOS DE COMERCIO
+		System.out.println();
+		System.out.println(almacen.separador());
+		System.out.println(almacen);
+		
+//INSTANCIA DE CLIENTE
+		
+		Cliente cliente = new Cliente("Soloduja", "Ignacio", 42678234, 'm');
+			try {
+				cliente.setDni(547);//No funciona cuando NO es numerico
+			} catch (Exception e) {
+				System.out.println("Excepcion: Valor Asignado no es numérico");
+			}
+			
+		
+		System.out.println(almacen.separador());
+		System.out.println(cliente);
+
+//INSTANCIA DE CARRITO
+		Carrito carrito = new Carrito(1, fecha, hora, true, 1, cliente);
+		
+//DATOS DE CARRITO
+		System.out.println();
+		System.out.println(almacen.separador());
+		System.out.println(carrito);
+		System.out.println(almacen.separador());
+		
+		
 // BLOQUE DE LOS ARTICULOS
-		Articulo art1 = new Articulo(1, "Fideos", 36.50);
-		Articulo art2 = new Articulo(2, "Harina", 75.25);
-		Articulo art3 = new Articulo(3, "Azucar", 40);
-		Articulo art4 = new Articulo(4, "Yerba", 84.75);
-		Articulo art5 = new Articulo(5, "Arroz", 35);
+		Articulo art1 = new Articulo(1, "Alcohol en Gel", 36.50);
+		Articulo art2 = new Articulo(2, "Harina 'Favorita'", 75.25);
+		Articulo art3 = new Articulo(3, "Azucar 'Ledesma'", 40);
+		Articulo art4 = new Articulo(4, "Mate Cocido 'Taragüi'", 84.75);
+		Articulo art5 = new Articulo(5, "Café 'Dolca", 60.25);
 		try {
 
 			art1.setCodBarras("7790139000196");
@@ -36,20 +100,24 @@ public class TestAlmacen {
 			System.out.println("Excepción: " + e.getMessage());
 		}
 
-// BLOQUE DEL CARRITO
+// AGREGAR AL CARRITO
 		try {
 			carrito.agregarAlCarrito(art1, 1);
 			carrito.agregarAlCarrito(art2, 2);
 			carrito.agregarAlCarrito(art3, 3);
 			carrito.agregarAlCarrito(art4, 4);
 			carrito.agregarAlCarrito(art5, 5);
+			
 		} catch (Exception e) {
+			
 			System.out.println("Excepcion: " + e.getMessage());
 		}
+		
 //VER LOS ARTICULOS AGREGADOS
 		for (ItemCarrito item : carrito.getLstItemCarrito()) {
 			System.out.println(item);
 		}
+		
 //ELIMINAR UN ARTICULO
 		try {
 			carrito.eliminarItem(art1, 1);
@@ -61,17 +129,22 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("\nExcepcion: " + e.getMessage() + "\n");
 		}
+		
 //TRAER ARTICULO INDIVIDUALMENTE
-		System.out.println("Item solicitado: " + carrito.traerItemCarrito(art5));
+		System.out.println("Item solicitado: \n" + carrito.traerItemCarrito(art5));
+		
 //PRODUCTOS DESPUES DE LAS MODIFICACIONES
-		System.out.println("Carrito:");
+		System.out.println("Carrito:\n");
 		for (ItemCarrito item : carrito.getLstItemCarrito()) {
 			System.out.println(item);
 		}
+		
 //TOTAL Y SUBTOTAL
+		System.out.println();
 		System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(0).getArticulo() + ": "
 				+ carrito.getLstItemCarrito().get(0).calcularSubTotal());
 		System.out.println("Total: " + carrito.calcularTotal());
+		
 //BLOQUE DE DIA DE DESCUENTO NEGATIVO
 		if (carrito.calcularDescuentoDia(3, 10d) > 0) {
 			System.out.println("El descuento por el dia Miercoles es: " + carrito.calcularDescuentoDia(3, 10d));
@@ -87,12 +160,34 @@ public class TestAlmacen {
 //DESCUENTO MAYOR
 		System.out.println("El descuento por pagar en efectivo es: " + carrito.calcularDescuentoEfectivo(50d));
 		System.out.println("El mayor descuento es: " + carrito.calcularDescuentoCarrito(2, 10d, 50d));
+		
 //TOTAL FINAL
 		System.out.println("Total final: " + carrito.totalAPagarCarrito());
+		
 //VALIDACIONES
-		Comercio Almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
-		System.out.println(Almacen.validarIdentificadorUnico(30242112322L));
+		
+		
+		
+		Cliente cliente2 = new Cliente("Del Rancho", "Cornelio", 12345678L, 'm');
+		try {
+			System.out.println(cliente2.validarIdentificadorUnico(cliente2.getDni()));
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			cliente2.setDni(123456789L);
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			cliente2.setDni(1234567L);
 
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		
+		System.out.println(cliente2);
+		
 	}
 
 }
