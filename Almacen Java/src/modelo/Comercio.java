@@ -3,7 +3,6 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Comercio {
@@ -168,13 +167,11 @@ public class Comercio {
 		DiaRetiro aux = new DiaRetiro(0, diaRetiro.getDiaSemana(), diaRetiro.getHoraDesde(), diaRetiro.getHoraHasta(),
 				diaRetiro.getIntervalo());
 		boolean resultado = false;
-		int i = 0;
 		Iterator<DiaRetiro> iterador = lstDiaRetiro.iterator();
 		while ((iterador.hasNext()) && (resultado == false)) {
 			if (iterador.next().equals(diaRetiro)) {
 				resultado = true;
 			}
-			i++;
 		}
 		if (resultado == true)
 			return null;

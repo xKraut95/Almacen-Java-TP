@@ -7,7 +7,6 @@ import modelo.Articulo;
 import modelo.Carrito;
 import modelo.ItemCarrito;
 import modelo.Comercio;
-import modelo.DiaRetiro;
 import modelo.Cliente;
 
 public class TestAlmacen {
