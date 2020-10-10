@@ -256,6 +256,22 @@ public class Comercio {
 	
 	 return turnosOcupados;
  }
+ public List<Turno> traerTurnosLibres(LocalDate fecha)
+ {
+	 List<Turno> turnosLibres = new ArrayList<Turno>();
+	 
+	 for(Carrito car: lstICarrito)
+	 {
+		 LocalTime hora = car.traerHoraRetiro(fecha);
+		 
+		 if(hora != null)
+		 {
+			 turnosLibres.add(new Turno(fecha, hora, false));
+		 }
+	 }
+	
+	 return turnosLibres;
+ }
  
  
  }
