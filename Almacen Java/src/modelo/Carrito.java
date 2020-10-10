@@ -1,22 +1,23 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Carrito {
 	private int id;
 	private LocalDate fecha;
-	private LocalDate hora;
+	private LocalTime hora;
 	private boolean cerrado;
 	private double descuento;
 	private Cliente cliente;
 	private Entrega entrega;
-	private ArrayList<ItemCarrito> lstItemCarrito;
+	private List<ItemCarrito> lstItemCarrito;
 
-	public Carrito(int id, LocalDate fecha, LocalDate hora, boolean cerrado, double descuento, Cliente cliente,
-			Entrega entrega) 
-	{
+	public Carrito(int id, LocalDate fecha, LocalTime hora, boolean cerrado, double descuento, Cliente cliente,
+			Entrega entrega) {
 		this.id = id;
 		this.fecha = fecha;
 		this.hora = hora;
@@ -24,6 +25,17 @@ public class Carrito {
 		this.descuento = descuento;
 		this.cliente = cliente;
 		this.entrega = entrega;
+		this.lstItemCarrito = new ArrayList<ItemCarrito>();
+	}
+
+	public Carrito(int id, LocalDate fecha, LocalTime hora, boolean cerrado, double descuento, Cliente cliente) {
+		this.id = id;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.cerrado = cerrado;
+		this.descuento = descuento;
+		this.cliente = cliente;
+		this.lstItemCarrito = new ArrayList<ItemCarrito>();
 	}
 
 	public int getId() {
@@ -42,11 +54,11 @@ public class Carrito {
 		this.fecha = fecha;
 	}
 
-	public LocalDate getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
 
-	public void setHora(LocalDate hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 
@@ -82,23 +94,31 @@ public class Carrito {
 		this.entrega = entrega;
 	}
 
-	public ArrayList<ItemCarrito> getLstItemCarrito() {
+	public List<ItemCarrito> getLstItemCarrito() {
 		return lstItemCarrito;
 	}
 
-	public void setLstItemCarrito(ArrayList<ItemCarrito> lstItemCarrito) {
-		this.lstItemCarrito = lstItemCarrito;
+	public void setLstItemCarrito(List<ItemCarrito> listaItem) {
+		this.lstItemCarrito = listaItem;
 	}
 
-	public ItemCarrito traerItemCarrito(int idArticulo) {
-		Articulo articulo = new Articulo(1, "nada", "nada", 5);
-		ItemCarrito aux = new ItemCarrito(articulo, 1);
+	@Override
+	
+	public String toString() {
+		return "Carrito: " + id + "\n\tFecha = " + fecha + "\n\tHora = " + hora + "\n\tCerrado = " 
+				+ cerrado + "\n\tDescuento = "
+				+ descuento + "\n\tCliente = " + cliente + "\n\tEntrega = " + entrega + ",\n\tLista de Items = \n"
+				+ lstItemCarrito;
+	}
+
+	public ItemCarrito traerItemCarrito(Articulo articulo) {
+		ItemCarrito aux = new ItemCarrito(articulo, 0);
 		boolean band = false;
 		int i = 0;
 		Iterator<ItemCarrito> iterador = lstItemCarrito.iterator();
 
 		while ((iterador.hasNext()) && (band == false)) {
-			if (iterador.next().getArticulo().getId() == idArticulo) {
+			if (iterador.next().getArticulo().getId() == articulo.getId()) {
 				band = true;
 				aux = lstItemCarrito.get(i);
 			}
@@ -111,9 +131,8 @@ public class Carrito {
 			return aux;
 	}
 
-	public boolean agregar(Articulo articulo, int cantidad) {
-		int idArticulo = articulo.getId();
-		ItemCarrito aux = traerItemCarrito(idArticulo);
+	public boolean agregarAlCarrito(Articulo articulo, int cantidad) {
+		ItemCarrito aux = traerItemCarrito(articulo);
 		if (aux == null)
 			return lstItemCarrito.add(new ItemCarrito(articulo, cantidad));
 		else {
@@ -124,11 +143,9 @@ public class Carrito {
 	}
 
 	public boolean eliminarItem(Articulo articulo, int cantidad) throws Exception {
-		int idArticulo = articulo.getId();
-		ItemCarrito aux = traerItemCarrito(idArticulo);
-
+		ItemCarrito aux = traerItemCarrito(articulo);
 		if (aux == null)
-			throw new Exception("Error: No  existe el producto en el carrito");
+			throw new Exception("Error: No existe el producto " + articulo.getId() + " en el carrito");
 		else {
 			if (aux.getCantidad() > cantidad) {
 				int restaCantArticulo = aux.getCantidad() - cantidad;
@@ -152,11 +169,13 @@ public class Carrito {
 
 	public double calcularDescuentoDia(int diaDescuento, double porcentajeDescuentoDia) {
 		double descuento = 0;
-		for (ItemCarrito item : lstItemCarrito) {
-			int cantidad = item.getCantidad();
-			int divisor = 2;
-			float calculo = cantidad / divisor;
-			descuento += calculo * item.getArticulo().getPrecio() * (porcentajeDescuentoDia / 100);
+		if (diaDescuento == fecha.getDayOfWeek().getValue()) {
+			for (ItemCarrito item : lstItemCarrito) {
+				int cantidad = item.getCantidad();
+				int divisor = 2;
+				float calculo = cantidad / divisor;
+				descuento += calculo * item.getArticulo().getPrecio() * (porcentajeDescuentoDia / 100);
+			}
 		}
 		return descuento;
 	}
@@ -175,7 +194,25 @@ public class Carrito {
 		} else {
 			descuentoSup = calcularDescuentoEfectivo(porcentajeDescuentoEfectivo);
 		}
+		setDescuento(descuentoSup);
 		return descuentoSup;
 	}
 
+	public double totalAPagarCarrito() {
+		return calcularTotal() - getDescuento();
+	}
+	
+	public LocalTime traerHoraRetiro(LocalDate fecha) {
+        LocalTime hora = null;
+        if(this.entrega instanceof RetiroLocal && entrega.getFecha()==fecha) {
+            hora=((RetiroLocal) entrega).getHoraEntrega();
+
+        }
+        return hora;
+      
+    }
+	
+	
+	
+	
 }
