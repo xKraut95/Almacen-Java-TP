@@ -1,7 +1,10 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Comercio {
 
@@ -25,6 +28,9 @@ public class Comercio {
 		this.diaDescuento = diaDescuento;
 		this.porcentajeDescuentoDia = porcentajeDescuentoDia;
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
+		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
+		this.lstArticulo = new ArrayList<Articulo>();
+		this.lstICarrito = new ArrayList<Carrito>();
 
 	}
 
@@ -126,6 +132,12 @@ public class Comercio {
 				+ this.porcentajeDescuentoEfectivo;
 	}
 
+	public void mostrarListaDiasRetiro() {
+		for (DiaRetiro dia : getLstDiaRetiro()) {
+			System.out.println(dia);
+		}
+	}
+
 	public String separador() {
 		return (">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<");
 	}
@@ -151,4 +163,40 @@ public class Comercio {
 		}
 		return Objects.equals(Character.getNumericValue(cuitVector[10]), aux);
 	}
+
+	public DiaRetiro traerDiaRetiro(DiaRetiro diaRetiro) {
+		DiaRetiro aux = new DiaRetiro(0, diaRetiro.getDiaSemana(), diaRetiro.getHoraDesde(), diaRetiro.getHoraHasta(),
+				diaRetiro.getIntervalo());
+		boolean resultado = false;
+		int i = 0;
+		Iterator<DiaRetiro> iterador = lstDiaRetiro.iterator();
+		while ((iterador.hasNext()) && (resultado == false)) {
+			if (iterador.next().equals(diaRetiro)) {
+				resultado = true;
+			}
+			i++;
+		}
+		if (resultado == true)
+			return null;
+		else
+			return aux;
+	}
+
+	public boolean agregarDiaRetiro(int diaSemana, LocalTime horaDesde, LocalTime horaHasta, int intervalo) {
+		int idDiaRetiro = 1;
+		DiaRetiro aux = new DiaRetiro(idDiaRetiro, diaSemana, horaDesde, horaHasta, intervalo);
+		boolean resultado = false;
+
+		if ((traerDiaRetiro(aux) == null) || (diaSemana > 7) || (diaSemana < 1)) {
+			resultado = false;
+		} else {
+			if (lstDiaRetiro.size() > 0)
+				idDiaRetiro = lstDiaRetiro.get(lstDiaRetiro.size() - 1).getId() + 1;
+			lstDiaRetiro.add(aux);
+			aux.setId(idDiaRetiro);
+			resultado = true;
+		}
+		return resultado;
+	}
+
 }

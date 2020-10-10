@@ -59,9 +59,12 @@ public class DiaRetiro {
 
 	@Override
 	public String toString() {
-		return "DiaRetiro: id:" + this.id + "DiaRetiro: diaSemana" + this.diaSemana + "DiaRetiro:horaDesde"
-				+ this.horaDesde + "DiaRetiro:horaHasta" + this.horaHasta + "DiaRetiro:invervalo" + this.intervalo;
+		return "DiaRetiro: id: " + this.id + "\tDiaSemana: " + this.diaSemana + "\tHora Desde: " + this.horaDesde
+				+ "\tHora Hasta: " + this.horaHasta + "\tIntervalo: " + this.intervalo;
+	}
+
+	public boolean equals(DiaRetiro diaRetiro) {
+		return ((diaSemana == diaRetiro.getDiaSemana()) && (horaDesde == diaRetiro.getHoraDesde())
+				&& (horaHasta == diaRetiro.getHoraHasta()) && (intervalo == diaRetiro.getIntervalo()));
 	}
 }
-
-

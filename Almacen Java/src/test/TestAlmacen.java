@@ -7,6 +7,7 @@ import modelo.Articulo;
 import modelo.Carrito;
 import modelo.ItemCarrito;
 import modelo.Comercio;
+import modelo.DiaRetiro;
 import modelo.Cliente;
 
 public class TestAlmacen {
@@ -249,7 +250,22 @@ public class TestAlmacen {
 //TOTAL FINAL
 			System.out.println("Total final: " + carrito.totalAPagarCarrito());
 		}
-
+		
+	
+		almacen.agregarDiaRetiro(1, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
+		almacen.agregarDiaRetiro(2, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
+		almacen.agregarDiaRetiro(3, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
+		almacen.agregarDiaRetiro(4, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
+		almacen.agregarDiaRetiro(5, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
+		almacen.agregarDiaRetiro(6, LocalTime.of(10, 00), LocalTime.of(15, 00), 15);
+		
+		//Casos, en los que no se agrega el dato nuevo
+		almacen.agregarDiaRetiro(3, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);//No se agrega porque ya existe uno identico
+		almacen.agregarDiaRetiro(9, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);//No se agrega porque numero de DiaSemana es mayor al valido
+		almacen.agregarDiaRetiro(0, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);//No se agrega porque numero de DiaSemana es menos al valido
+		
+		almacen.mostrarListaDiasRetiro();
+		
+		
 	}
-
 }
