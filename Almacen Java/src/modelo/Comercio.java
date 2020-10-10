@@ -151,6 +151,10 @@ public class Comercio {
 	}
 
 	public boolean agregarDiaRetiro(int diaSemana, LocalTime horaDesde, LocalTime horaHasta, int intervalo) {
-		return lstDiaRetiro.add(new DiaRetiro(0, diaSemana, horaDesde, horaHasta, intervalo));
+		int idDiaRetiro = 1;
+		if (lstDiaRetiro.size() > 0)
+			idDiaRetiro = lstDiaRetiro.get(lstDiaRetiro.size() - 1).getId() + 1;
+
+		return lstDiaRetiro.add(new DiaRetiro(idDiaRetiro, diaSemana, horaDesde, horaHasta, intervalo));
 	}
 }
