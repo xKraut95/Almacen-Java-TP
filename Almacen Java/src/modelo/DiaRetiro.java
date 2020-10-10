@@ -59,8 +59,8 @@ public class DiaRetiro {
 
 	@Override
 	public String toString() {
-		return "DiaRetiro: id:" + this.id + "DiaRetiro: diaSemana" + this.diaSemana + "DiaRetiro:horaDesde"
-				+ this.horaDesde + "DiaRetiro:horaHasta" + this.horaHasta + "DiaRetiro:invervalo" + this.intervalo;
+		return "DiaRetiro: id: " + this.id + ", Dia de la Semana " + this.diaSemana + ", Hora desde "
+				+ this.horaDesde + ", Hora hasta " + this.horaHasta + ", Invervalo: " + this.intervalo;
 	}
 }
 

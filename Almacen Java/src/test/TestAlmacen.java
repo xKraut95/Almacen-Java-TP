@@ -7,6 +7,7 @@ import modelo.Articulo;
 import modelo.Carrito;
 import modelo.ItemCarrito;
 import modelo.Comercio;
+import modelo.DiaRetiro;
 import modelo.Cliente;
 
 public class TestAlmacen {
@@ -87,19 +88,30 @@ public class TestAlmacen {
 //TOTAL FINAL
 		System.out.println("Total final: " + carrito.totalAPagarCarrito());
 //VALIDACIONES
-		Comercio Almacen = new Comercio("Almacen Granate", 2, 4, 5, 2, 4);
+		Comercio almacen = new Comercio("Almacen Granate", 2, 4, 5, 2, 4);
 		try {
-			Almacen.setCuit(3023232L);
+			almacen.setCuit(3023232L);
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
 		try {
-			Almacen.setCuit(30112233445L);
+			almacen.setCuit(30112233445L);
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
-		System.out.println(Almacen.getCuit());
-		System.out.println(Almacen.validarIdentificadorUnico(Almacen.getCuit()));
+		System.out.println(almacen.getCuit());
+		System.out.println(almacen.validarIdentificadorUnico(almacen.getCuit()));
+//PROBANDO AGREGAR DIARETIRO
+		almacen.agregarDiaRetiro(1, LocalTime.parse("07:00"), LocalTime.parse("12:00"), 30);
+		almacen.agregarDiaRetiro(2, LocalTime.parse("07:00"), LocalTime.parse("12:00"), 30);
+		almacen.agregarDiaRetiro(3, LocalTime.parse("07:00"), LocalTime.parse("12:00"), 30);
+		almacen.agregarDiaRetiro(4, LocalTime.parse("07:00"), LocalTime.parse("12:00"), 30);
+		almacen.agregarDiaRetiro(5, LocalTime.parse("07:00"), LocalTime.parse("12:00"), 30);
+		for (DiaRetiro dia : almacen.getLstDiaRetiro()) {
+			System.out.println(dia);
+		}
+
+		
 	}
 
 }

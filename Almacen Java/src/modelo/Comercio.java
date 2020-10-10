@@ -1,5 +1,6 @@
 package modelo;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -29,7 +30,7 @@ public class Comercio {
 		this.lstArticulo = new ArrayList<Articulo>();
 		this.lstICarrito = new ArrayList<Carrito>();
 	}
-	
+
 	public Comercio(String nombreComercio, double costoFijo, double costoPorK, int diaDescuento,
 			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) {
 		super();
@@ -147,5 +148,9 @@ public class Comercio {
 			aux = 3;
 		}
 		return Objects.equals(Character.getNumericValue(cuitVector[10]), aux);
+	}
+
+	public boolean agregarDiaRetiro(int diaSemana, LocalTime horaDesde, LocalTime horaHasta, int intervalo) {
+		return lstDiaRetiro.add(new DiaRetiro(0, diaSemana, horaDesde, horaHasta, intervalo));
 	}
 }
