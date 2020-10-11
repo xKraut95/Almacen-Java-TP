@@ -235,21 +235,22 @@ public class Comercio {
 	}
 
 
-		public List<Turno> generarAgenda (LocalDate fecha) { //Retorna una lista de objetos Turno indicando si está ocupado o libre
+		public List<Turno> generarAgenda (LocalDate fecha) throws Exception { //Retorna una lista de objetos Turno indicando si está ocupado o libre
 					
 			DiaRetiro aux = traerDiaRetiro(fecha);
 			List<Turno> agenda = new ArrayList <Turno>();
-			LocalTime hora = aux.getHoraDesde();
-			if(aux!=null) {
+			if(aux == null) throw new Exception ("Error: No se puede generar la Agenda. Almacen Cerrado");
+			else {
+				LocalTime hora = aux.getHoraDesde();
 				agenda.add(new Turno(fecha,hora,false));
 				while(hora.isBefore(aux.getHoraHasta())){
-					hora=hora.plusMinutes(aux.getIntervalo());
-					agenda.add(new Turno(fecha, hora, false));
+				hora=hora.plusMinutes(aux.getIntervalo());
+				agenda.add(new Turno(fecha, hora, false));
 				}
 			}
 			return agenda;
 			}
-	
+		
 		
 		public List<Turno> generarTurnosLibres(LocalDate fecha)
 		 {

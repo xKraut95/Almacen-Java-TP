@@ -265,7 +265,11 @@ public class TestAlmacen {
 		
 		almacen.mostrarListaDiasRetiro();
 		System.out.println(almacen.separador());
-		System.out.println(almacen.generarAgenda(fecha));
+		try {
+			System.out.println(almacen.generarAgenda(fecha));
+		} catch (Exception e) {
+			System.out.println("Excepcion: " + e.getMessage());
+		}
 		System.out.println(almacen.separador());
 		//System.out.println(almacen.generarTurnosLibres(fecha));
 		//System.out.println(almacen.traerTurnosOcupados(fecha));
