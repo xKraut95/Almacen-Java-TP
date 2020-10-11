@@ -36,9 +36,6 @@ public class Cliente extends Actor{
 	}
 
 	public void setDni(long dni) throws Exception {
-		String dniString = Long.toString(dni);
-		if (dniString.length() != 8)
-			throw new Exception("DNI no valido, No son 8 caracteres");
 		if (!validarIdentificadorUnico(dni))
 			throw new Exception("Error: DNI Invalido");
 		this.dni = dni;
@@ -68,7 +65,9 @@ public class Cliente extends Actor{
 		String[] unoAlNueve = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 		int i, j;
 		boolean flag = false;
-		if (dniString.length() == 8) {
+		
+		if ((dniString.length() == 8) && (dni>0)) { 
+			flag = true;
 			for (i = 0; i < 8; i++) {
 				numeroDni = dniString.substring(i, i + 1);
 
@@ -81,9 +80,9 @@ public class Cliente extends Actor{
 			}
 		}
 
-		if (dniComparado.length() == 8) {
+		/*if (dniComparado.length() == 8) {
 			flag = true;
-		}
+		}*/
 
 		return flag;
 

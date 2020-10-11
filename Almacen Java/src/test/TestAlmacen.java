@@ -79,6 +79,8 @@ public class TestAlmacen {
 
 		almacen.separador();
 		System.out.println(cliente1);
+		
+		almacen.separador();
 
 //CREACION DE OTRO CLIENTE Y VALIDACIONES DE DNI
 		Actor customer2= new Cliente(2, new Contacto ("cordelranch@gmail.com","1123658745",new Ubicacion(33333, 444444)), "Del Rancho", "Cornelio", 12345678, 'm');
@@ -96,6 +98,12 @@ public class TestAlmacen {
 		}
 		try {
 			cliente2.setDni(1234567L);
+
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		try {
+			cliente2.setDni(0L);
 
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
