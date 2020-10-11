@@ -142,8 +142,8 @@ public class Comercio extends Actor{
 		}
 	}
 
-	public String separador() {
-		return (">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<");
+	public void separador() {
+		System.out.println(">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<");
 	}
 
 	public boolean validarIdentificadorUnico(long cuit) throws Exception {
@@ -364,5 +364,30 @@ public class Comercio extends Actor{
 			 return turnosOcupados;
 		 }*/
 		 
+		// public List<Carrito> listaCarritos(Cliente cliente){//(LocalDate fecha)
+			 
+		// }
+		 public void mostrarListaCarritos() {
+				for (Carrito carritos : getLstICarrito()) {
+					System.out.println(carritos);
+				}
+		 }
+		 
+		/*public boolean agregarCarritoALLista(Carrito carrito) {
+			int idDiaRetiro = 1;
+			Carrito aux = carrito;
+			boolean resultado = false;
+
+			if ((traerDiaRetiro(aux) == null) || (diaSemana > 7) || (diaSemana < 1)) {
+				resultado = false;
+			} else {
+				if (lstDiaRetiro.size() > 0)
+					idDiaRetiro = lstDiaRetiro.get(lstDiaRetiro.size() - 1).getId() + 1;
+					lstDiaRetiro.add(aux);
+					aux.setId(idDiaRetiro);
+					resultado = true;
+		}
+			return resultado;
+	}*/
 } 
 	

@@ -30,9 +30,9 @@ public class TestAlmacen {
 		Actor comercio= new Comercio(1, contactoAlmacen, "Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
 		Comercio almacen=(Comercio)comercio;
 
-		System.out.println(almacen.separador());
+		almacen.separador();
 		System.out.println("Escenario 1: Validaciones Cuit del Comercio");
-		System.out.println(almacen.separador());
+		almacen.separador();
 
 //VALIDACIONES DE CUIT EN COMERCIO
 		try {
@@ -65,7 +65,7 @@ public class TestAlmacen {
 
 //DATOS DE COMERCIO
 		System.out.println();
-		System.out.println(almacen.separador());
+		almacen.separador();
 		System.out.println(almacen);
 
 //INSTANCIA DE CLIENTE Y VALIDACION DEL DNI
@@ -77,11 +77,11 @@ public class TestAlmacen {
 			System.out.println("Excepcion: Valor Asignado no es numérico");
 		}
 
-		System.out.println(almacen.separador());
+		almacen.separador();
 		System.out.println(cliente1);
 
 //CREACION DE OTRO CLIENTE Y VALIDACIONES DE DNI
-		Actor customer2= new Cliente(1, new Contacto ("cordelranch@gmail.com","1123658745",new Ubicacion(33333, 444444)), "Del Rancho", "Cornelio", 12345678, 'm');
+		Actor customer2= new Cliente(2, new Contacto ("cordelranch@gmail.com","1123658745",new Ubicacion(33333, 444444)), "Del Rancho", "Cornelio", 12345678, 'm');
 		Cliente cliente2=(Cliente)customer2;
 	
 		try {
@@ -101,6 +101,7 @@ public class TestAlmacen {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
 
+		almacen.separador();
 		System.out.println(cliente2);
 		
 
@@ -111,11 +112,11 @@ public class TestAlmacen {
 
 //DATOS DE CARRITO
 		System.out.println();
-		System.out.println(almacen.separador());
+		almacen.separador();
 		System.out.println("Creación de un Carrito e impresion de sus datos");
-		System.out.println(almacen.separador());
+		almacen.separador();
 		System.out.println(carrito);
-		System.out.println(almacen.separador());
+		almacen.separador();
 
 // INSTANCIA DE ARTICULOS
 		Articulo art1 = new Articulo(1, "Alcohol en Gel", "7790139000196", 36.50);
@@ -126,7 +127,7 @@ public class TestAlmacen {
 
 //VALIDACION DE CODIGO DE BARRA DE LOS ARTICULOS
 		System.out.println("Validación de Código de Barras");
-		System.out.println(almacen.separador());
+		almacen.separador();
 		try {
 
 			art1.setCodBarras("7790201962683");
@@ -160,7 +161,7 @@ public class TestAlmacen {
 
 		System.out.println();
 
-		System.out.println(almacen.separador());
+		almacen.separador();
 
 		System.out.println("Impresion de Articulos Instanciados");
 		System.out.println(art1);
@@ -183,12 +184,12 @@ public class TestAlmacen {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
 
-		System.out.println(almacen.separador());
+		almacen.separador();
 
 //VER LOS ARTICULOS AGREGADOS
 		System.out.println();
 		System.out.println("Items Agregados al Carrito");
-		System.out.println(almacen.separador());
+		almacen.separador();
 		for (ItemCarrito item : carrito.getLstItemCarrito()) {
 			System.out.println(item);
 		}
@@ -217,15 +218,15 @@ public class TestAlmacen {
 		carrito.setCerrado(true);
 
 //PRODUCTOS DESPUES DE LAS MODIFICACIONES, IMPRESION DE CARRITO COMPLETO
-		System.out.println(almacen.separador());
+		almacen.separador();
 		System.out.println(carrito);
-		System.out.println(almacen.separador());
+		almacen.separador();
 
 		if (carrito.isCerrado()) { // Si, is cerrado() es True
 
 //SUBTOTAL
 			System.out.println("SubTotal Por Item");
-			System.out.println(almacen.separador());
+			almacen.separador();
 
 			System.out.println("Subtotal del item " + carrito.getLstItemCarrito().get(0).getArticulo() + ": "
 					+ carrito.getLstItemCarrito().get(0).calcularSubTotal());
@@ -241,9 +242,9 @@ public class TestAlmacen {
 
 //TOTAL A PAGAR
 			System.out.println();
-			System.out.println(almacen.separador());
+			almacen.separador();
 			System.out.println("Total: " + carrito.calcularTotal());
-			System.out.println(almacen.separador());
+			almacen.separador();
 
 //BLOQUE DE DIA DE DESCUENTO NEGATIVO
 			System.out.println();
@@ -281,16 +282,18 @@ public class TestAlmacen {
 		almacen.agregarDiaRetiro(0, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);//No se agrega porque numero de DiaSemana es menos al valido
 		
 		almacen.mostrarListaDiasRetiro();
-		System.out.println(almacen.separador());
+		almacen.separador();
 		try {
 			System.out.println(almacen.generarAgenda(fecha));
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		System.out.println(almacen.separador());
+		almacen.separador();
+		almacen.mostrarListaCarritos();
 		//System.out.println(almacen.generarTurnosLibres(fecha));
 		//System.out.println(almacen.traerTurnosOcupados(fecha));
-		System.out.println(almacen.separador());
+		almacen.separador();
+		
 		
 	}
 }
