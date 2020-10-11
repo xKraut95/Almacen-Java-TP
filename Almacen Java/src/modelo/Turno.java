@@ -41,8 +41,9 @@ public class Turno {
 
 	@Override
 	public String toString() {
-		return "Turno:dia" + this.dia + "Turno:Hora" + this.hora + "Turno:ocupado" + this.ocupado;
+		return "\nTurnos:\n\tDia: " + this.dia + "\n\tHora: " + this.hora + "\n\tOcupado: " + this.ocupado;
 	}
+	
+	
 }
-
 

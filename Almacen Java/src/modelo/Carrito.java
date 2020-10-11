@@ -201,5 +201,15 @@ public class Carrito {
 	public double totalAPagarCarrito() {
 		return calcularTotal() - getDescuento();
 	}
+	
+	public LocalTime traerHoraRetiro(LocalDate fecha) {
+        LocalTime hora = null;
+        if(this.entrega instanceof RetiroLocal && entrega.getFecha()==fecha) {
+            hora=((RetiroLocal) entrega).getHoraEntrega();
+
+        }
+        return hora;
+      
+    }
 
 }

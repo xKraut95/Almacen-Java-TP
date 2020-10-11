@@ -67,4 +67,10 @@ public class DiaRetiro {
 		return ((diaSemana == diaRetiro.getDiaSemana()) && (horaDesde == diaRetiro.getHoraDesde())
 				&& (horaHasta == diaRetiro.getHoraHasta()) && (intervalo == diaRetiro.getIntervalo()));
 	}
+	
+	
+	
+	
+	
+	
 }

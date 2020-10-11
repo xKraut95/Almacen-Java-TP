@@ -264,7 +264,12 @@ public class TestAlmacen {
 		almacen.agregarDiaRetiro(0, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);//No se agrega porque numero de DiaSemana es menos al valido
 		
 		almacen.mostrarListaDiasRetiro();
-		
+		System.out.println(almacen.separador());
+		System.out.println(almacen.generarAgenda(fecha));
+		System.out.println(almacen.separador());
+		//System.out.println(almacen.generarTurnosLibres(fecha));
+		//System.out.println(almacen.traerTurnosOcupados(fecha));
+		System.out.println(almacen.separador());
 		
 	}
 }
