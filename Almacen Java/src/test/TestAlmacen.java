@@ -3,10 +3,13 @@ package test;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import modelo.Actor;
 import modelo.Articulo;
 import modelo.Carrito;
 import modelo.ItemCarrito;
+import modelo.Ubicacion;
 import modelo.Comercio;
+import modelo.Contacto;
 import modelo.Cliente;
 
 public class TestAlmacen {
@@ -15,9 +18,17 @@ public class TestAlmacen {
 
 		LocalDate fecha = LocalDate.now();
 		LocalTime hora = LocalTime.now();
-
+		Ubicacion ubicacionAlmacen=new Ubicacion(343647, 582238);
+		Contacto contactoAlmacen= new Contacto ("almacengranate@gmail.com","42673455",ubicacionAlmacen);
+		try {
+			contactoAlmacen.setEmail("almacengranate@gmail.com");
+		}
+		catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
 //INSTANCIA DE COMERCIO
-		Comercio almacen = new Comercio("Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
+		Actor comercio= new Comercio(1, contactoAlmacen, "Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
+		Comercio almacen=(Comercio)comercio;
 
 		System.out.println(almacen.separador());
 		System.out.println("Escenario 1: Validaciones Cuit del Comercio");
@@ -58,19 +69,21 @@ public class TestAlmacen {
 		System.out.println(almacen);
 
 //INSTANCIA DE CLIENTE Y VALIDACION DEL DNI
-
-		Cliente cliente = new Cliente("Soloduja", "Ignacio", 42678234, 'm');
+		Actor customer1= new Cliente(1, new Contacto ("nachosoloduja@hotmail.com","1112345678",new Ubicacion(11111, 22222)), "Soloduja", "Ignacio", 42678234, 'm');
+		Cliente cliente1=(Cliente)customer1;
 		try {
-			cliente.setDni(547);
+			cliente1.setDni(547);
 		} catch (Exception e) {
 			System.out.println("Excepcion: Valor Asignado no es numérico");
 		}
 
 		System.out.println(almacen.separador());
-		System.out.println(cliente);
+		System.out.println(cliente1);
 
 //CREACION DE OTRO CLIENTE Y VALIDACIONES DE DNI
-		Cliente cliente2 = new Cliente("Del Rancho", "Cornelio", 12345678L, 'm');
+		Actor customer2= new Cliente(1, new Contacto ("cordelranch@gmail.com","1123658745",new Ubicacion(33333, 444444)), "Del Rancho", "Cornelio", 12345678, 'm');
+		Cliente cliente2=(Cliente)customer2;
+	
 		try {
 			System.out.println(cliente2.validarIdentificadorUnico(cliente2.getDni()));
 		} catch (Exception e) {
@@ -89,9 +102,12 @@ public class TestAlmacen {
 		}
 
 		System.out.println(cliente2);
+		
+
+	
 
 //INSTANCIA DE CARRITO
-		Carrito carrito = new Carrito(1, fecha, hora, false, 1, cliente);
+		Carrito carrito = new Carrito(1, fecha, hora, false, 1, cliente1);
 
 //DATOS DE CARRITO
 		System.out.println();
@@ -257,6 +273,7 @@ public class TestAlmacen {
 		almacen.agregarDiaRetiro(4, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
 		almacen.agregarDiaRetiro(5, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
 		almacen.agregarDiaRetiro(6, LocalTime.of(10, 00), LocalTime.of(15, 00), 15);
+		almacen.agregarDiaRetiro(7, LocalTime.of(10, 00), LocalTime.of(15, 00), 10);//Despues borrar
 		
 		//Casos, en los que no se agrega el dato nuevo
 		almacen.agregarDiaRetiro(3, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);//No se agrega porque ya existe uno identico

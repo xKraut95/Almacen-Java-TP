@@ -65,6 +65,7 @@ public class Articulo {
 		char[] codBarrasSeparado = codBarras.toCharArray();
 		int sumaPar = 0;
 		int sumaImpar = 0;
+		boolean valido=false;
 
 		// Algoritmo para Validar Dígito Verificador
 		/*
@@ -99,19 +100,18 @@ public class Articulo {
 		codBarrasInt[12] = Character.getNumericValue(codBarrasSeparado[12]);
 
 		if (digitoVerficador == codBarrasInt[12]) {
-			return true;
-		} else {
-			return false;
-		}
+			valido = true;
+		} 
+		return valido;
 	}
 
 	public boolean esPar(int numeroAEvaluar) {
 		int resto = numeroAEvaluar % 2;
+		boolean resultado=false;
 		if (resto == 0) {
-			return true;
-		} else {
-			return false;
-		}
+			resultado = true;
+		} 
+		return resultado;
 	}
 
 	public int multiploDiez(int valorPaso4) {

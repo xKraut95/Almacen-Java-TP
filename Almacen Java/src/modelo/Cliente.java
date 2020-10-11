@@ -1,12 +1,14 @@
 package modelo;
 
-public class Cliente {
+public class Cliente extends Actor{
 	private String apellido;
 	private String nombre;
 	private long dni;
 	private char sexo;
 
-	public Cliente(String apellido, String nombre, long dni, char sexo) throws Exception {
+	public Cliente(int id, Contacto contacto,String apellido, String nombre, long dni, char sexo) throws Exception {
+		
+		super(id, contacto);
 		this.apellido = apellido;
 		this.nombre = nombre;
 		this.setDni(dni);
