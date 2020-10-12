@@ -2,11 +2,13 @@ package test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import modelo.Actor;
 import modelo.Articulo;
 import modelo.Carrito;
 import modelo.ItemCarrito;
+import modelo.Turno;
 import modelo.Ubicacion;
 import modelo.Comercio;
 import modelo.Contacto;
@@ -215,7 +217,7 @@ public class TestAlmacen {
 		System.out.println("Item solicitado: \n" + carrito.traerItemCarrito(art5));
 
 //UNA VEZ HECHO LOS CAMBIOS NECESARIOS, SE CIERRA EL CARRITO
-		carrito.setCerrado(true);
+		//carrito.setCerrado(true);
 
 //PRODUCTOS DESPUES DE LAS MODIFICACIONES, IMPRESION DE CARRITO COMPLETO
 		almacen.separador();
@@ -267,7 +269,66 @@ public class TestAlmacen {
 			System.out.println("Total final: " + carrito.totalAPagarCarrito());
 		}
 		
-	
+//AGREGAMOS OTRO CARRITO CON UN CLIENTE DIFERENTE
+		Carrito carrito2 = new Carrito(2, fecha, hora.plusMinutes(14), false, 1, cliente2);
+		
+//SE AGREGAN ITEMS AL CARRITO2
+		carrito2.agregarAlCarrito(art3, 4);
+		carrito2.agregarAlCarrito(art1,6);
+		carrito2.agregarAlCarrito(art2,2);
+		
+		carrito2.setCerrado(true);
+		
+//VAMOS AGREGANDO LOS CARRITOS A LA LISTA
+		almacen.getLstCarrito();
+		almacen.listaCarritos(carrito);
+		almacen.listaCarritos(carrito2);
+//CREAMOS UN NUEVO CARRITO CON EL PRIMER CLIENTE
+		//funcionaaaaaaaaaaaaaaaaaaaaa
+		//if((almacen.traerCarrito(almacen.getLstICarrito(), cliente1) == null) ||(almacen.isCerrado(almacen.traerCarrito(almacen.getLstICarrito(), cliente1)))){
+		try {
+			//System.out.println(almacen.aptoAbrirNuevoCarrito(almacen.getLstICarrito(), cliente1));
+			if (almacen.aptoAbrirNuevoCarrito(almacen.getLstCarrito(), cliente1)) {
+				Carrito carrito3 = new Carrito(3, fecha, hora.plusMinutes(35), false, 1, cliente1);
+			
+			
+//SE AGREGAN ITEMS AL CARRITO2
+				carrito3.agregarAlCarrito(art5, 2);
+				carrito3.agregarAlCarrito(art3,8);
+				carrito3.agregarAlCarrito(art2,5);
+				almacen.separador();
+				almacen.listaCarritos(carrito3);
+				}
+			}
+		catch(Exception e){
+			System.out.println("Excepcion: " + e.getMessage());
+		}
+		
+		almacen.separador();
+		
+//CREAMOS UN NUEVO CARRITO CON EL CLIENTE2
+		//funcionaaaaaaaaaaaaaaaaaaaaa
+		//if((almacen.traerCarrito(almacen.getLstICarrito(), cliente1) == null) ||(almacen.isCerrado(almacen.traerCarrito(almacen.getLstICarrito(), cliente1)))){
+		try {
+			//System.out.println(almacen.aptoAbrirNuevoCarrito(almacen.getLstICarrito(), cliente1));
+			if (almacen.aptoAbrirNuevoCarrito(almacen.getLstCarrito(), cliente2)) {
+				Carrito carrito4 = new Carrito(4, fecha, hora.plusMinutes(35), false, 1, cliente2);
+				
+//SE AGREGAN ITEMS AL CARRITO2
+				carrito4.agregarAlCarrito(art1, 4);
+				carrito4.agregarAlCarrito(art5,3);
+				carrito4.agregarAlCarrito(art1,5);
+				almacen.separador();
+				almacen.listaCarritos(carrito4);
+				}
+			}
+		catch(Exception e){
+			System.out.println("Excepcion: " + e.getMessage());
+			}
+		
+		almacen.separador();		
+		
+//SE ESTABLECEN LOS DIAS DE RETIRO
 		almacen.agregarDiaRetiro(1, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
 		almacen.agregarDiaRetiro(2, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
 		almacen.agregarDiaRetiro(3, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
@@ -288,11 +349,22 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
+		List<Turno> agendaGuardada=almacen.generarAgenda(fecha);
 		almacen.separador();
-		almacen.mostrarListaCarritos();
+		System.out.println(agendaGuardada);
 		//System.out.println(almacen.generarTurnosLibres(fecha));
+		almacen.separador();
 		//System.out.println(almacen.traerTurnosOcupados(fecha));
 		almacen.separador();
+		System.out.println("Lista de Carritos: ");
+		System.out.println(almacen.getLstCarrito());
+		almacen.separador();
+		System.out.println(almacen.traerCarrito(almacen.getLstCarrito(), cliente1));//despues se borra
+		//System.out.println(almacen.isCerrado(carrito3));//despues se borra
+		almacen.separador();
+		//System.out.println(almacen.aptoAbrirNuevoCarrito(almacen.getLstICarrito(), cliente2));
+		
+		
 		
 		
 	}

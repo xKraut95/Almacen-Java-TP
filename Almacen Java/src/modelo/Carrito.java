@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
+
 public class Carrito {
 	private int id;
 	private LocalDate fecha;
@@ -37,6 +39,18 @@ public class Carrito {
 		this.cliente = cliente;
 		this.lstItemCarrito = new ArrayList<ItemCarrito>();
 	}
+	
+	//Sobrecarga que tira excepcion cuando el carrito anterior no fue cerrado
+	/*public Carrito(int id,  LocalDate fecha, LocalTime hora, boolean cerrado, double descuento, Cliente cliente) throws Exception{
+		if()
+		this.id = id;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.cerrado = cerrado;
+		this.descuento = descuento;
+		this.cliente = cliente;
+		this.lstItemCarrito = new ArrayList<ItemCarrito>();
+	}*/
 
 	public int getId() {
 		return id;
@@ -131,7 +145,7 @@ public class Carrito {
 			return aux;
 	}
 
-	public boolean agregarAlCarrito(Articulo articulo, int cantidad) {
+	/*public boolean agregarAlCarrito(Articulo articulo, int cantidad) { //Esto funciona
 		ItemCarrito aux = traerItemCarrito(articulo);
 		if (aux == null)
 			return lstItemCarrito.add(new ItemCarrito(articulo, cantidad));
@@ -140,6 +154,19 @@ public class Carrito {
 			aux.setCantidad(sumaDeCantArticulo);
 			return true;
 		}
+	}*/
+	
+	public boolean agregarAlCarrito(Articulo articulo, int cantidad) {
+		ItemCarrito aux = traerItemCarrito(articulo);
+		if (aux == null)
+			lstItemCarrito.add(new ItemCarrito(articulo, cantidad));
+		else {
+			int sumaDeCantArticulo = aux.getCantidad() + cantidad;
+			aux.setCantidad(sumaDeCantArticulo);
+			
+		}
+		
+		return true;
 	}
 
 	public boolean eliminarItem(Articulo articulo, int cantidad) throws Exception {
@@ -212,4 +239,7 @@ public class Carrito {
       
     }
 
+	///////////////////////
+	
+	
 }

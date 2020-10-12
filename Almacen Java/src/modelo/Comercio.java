@@ -19,7 +19,7 @@ public class Comercio extends Actor{
 	private int porcentajeDescuentoEfectivo;
 	private ArrayList<DiaRetiro> lstDiaRetiro;
 	private ArrayList<Articulo> lstArticulo;
-	private ArrayList<Carrito> lstICarrito;
+	private ArrayList<Carrito> lstCarrito;
 
 	public Comercio(int id, Contacto contacto, String nombreComercio, long cuit, double costoFijo, double costoPorKm, int diaDescuento,
 			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
@@ -34,7 +34,7 @@ public class Comercio extends Actor{
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
 		this.lstDiaRetiro = new ArrayList<DiaRetiro>();
 		this.lstArticulo = new ArrayList<Articulo>();
-		this.lstICarrito = new ArrayList<Carrito>();
+		this.lstCarrito = new ArrayList<Carrito>();
 
 	}
 
@@ -54,12 +54,12 @@ public class Comercio extends Actor{
 		this.lstArticulo = lstArticulo;
 	}
 
-	public ArrayList<Carrito> getLstICarrito() {
-		return lstICarrito;
+	public ArrayList<Carrito> getLstCarrito() {
+		return lstCarrito;
 	}
 
-	public void setLstICarrito(ArrayList<Carrito> lstICarrito) {
-		this.lstICarrito = lstICarrito;
+	public void setLstCarrito(ArrayList<Carrito> lstCarrito) {
+		this.lstCarrito = lstCarrito;
 	}
 
 	public String getNombreComercio() {
@@ -297,7 +297,7 @@ public class Comercio extends Actor{
 		 {
 			 List<Turno> turnosOcupados = new ArrayList<Turno>();
 			 
-			 for(Carrito car: lstICarrito)
+			 for(Carrito car: lstCarrito)
 			 {
 				 LocalTime hora = car.traerHoraRetiro(fecha);
 				 
@@ -367,27 +367,120 @@ public class Comercio extends Actor{
 		// public List<Carrito> listaCarritos(Cliente cliente){//(LocalDate fecha)
 			 
 		// }
-		 public void mostrarListaCarritos() {
+		 
+		 //esto no funciona
+		/*public void mostrarListaCarritos() {
 				for (Carrito carritos : getLstICarrito()) {
 					System.out.println(carritos);
 				}
+				
+		}*/
+		 
+		 public List<Carrito> listaCarritos (Carrito carrito) { //Retorna una lista de objetos Turno indicando si está ocupado o libre
+			 lstCarrito.add(carrito);
+			 return lstCarrito;
+		 }
+
+		/* public Carrito traerCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) {
+				int id =1;
+				
+				boolean encontrado = false;
+				Iterator<Carrito> iterador = lstCarrito.iterator();
+				while (iterador.hasNext()) {
+					if (iterador.next().equals(cliente.getId())) {
+						encontrado = true;
+						return carr
+						
+					}
+					id++;
+				}
+				if (resultado == true)
+					return null;
+				else
+					return aux;
+			}*/
+		 
+		 public Carrito traerCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) {//traerUltimoCarritoDelCliente
+			 Carrito aux=null;
+			 for(Carrito cart: lstCarrito){
+				 if(cart.getCliente()==cliente){
+					 aux=cart;
+					 }
+				 }
+		return aux;
+		 }
+		 //polimorfismo? del metodo iscerrado de la clase Carrito
+		 /*public boolean isCerrado(Carrito cart) {
+				return cart.isCerrado();
+			}*/
+		 
+		 
+		 public boolean aptoAbrirNuevoCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) throws Exception{
+			 Carrito aux=null;
+			 boolean apto=true;
+			 for(Carrito cart: lstCarrito){
+				 if(cart.getCliente()==cliente){
+					 aux=cart;
+					 apto=true;
+					 }
+				 }
+			/* if(aux.isCerrado()==true||aux==null) {
+				 apto=true;
+			 }
+			 else throw{*/
+			 if(aux.isCerrado()==false) {
+				 apto=false;
+			 }
+			 if(apto==false)throw new Exception("Error: Debe cerrar su carrito anterior para generar uno nuevo");
+			 return apto;
 		 }
 		 
-		/*public boolean agregarCarritoALLista(Carrito carrito) {
-			int idDiaRetiro = 1;
-			Carrito aux = carrito;
-			boolean resultado = false;
-
-			if ((traerDiaRetiro(aux) == null) || (diaSemana > 7) || (diaSemana < 1)) {
-				resultado = false;
-			} else {
-				if (lstDiaRetiro.size() > 0)
-					idDiaRetiro = lstDiaRetiro.get(lstDiaRetiro.size() - 1).getId() + 1;
-					lstDiaRetiro.add(aux);
-					aux.setId(idDiaRetiro);
-					resultado = true;
-		}
-			return resultado;
-	}*/
-} 
+		 
+}		 
+		 /////
+		/*//quitarComentario
+		  public int traerSoloHora(LocalTime tiempo) {
+		 
+			int soloHora = tiempo.getHour();
+			 return soloHora;
+		 }
+		 public int traerDecenaMinutos(LocalTime tiempo) {
+			 int soloMinutos = tiempo.getMinute();
+			 
+		 }
+		 ///////////////////////////////////BORRADOR
+		 public List<Turno> modificarSetOcupado(List<Turno> agenda,Carrito cart) {
+			 Iterator<Turno> iterador = agenda.iterator();
+				//while ((iterador.hasNext()) && (resultado == false)) {
+			 while ((iterador.hasNext())) {
+					if (iterador.next().equals(traerSoloHora(cart.getHora()))&&iterador.next().equals(obj)) {
+						while ())
+						
+						
+						resultado = true;
+					}
+				}
+				if (resultado == true)
+					return null;
+				else
+					return aux;
+		 }
+			 //////
+			 /*while()
+				for(Turno turno : agenda){
+					if(turno.()==diaSemana)
+					{
+						aux= dia;
+					}
+				}
+				
+				return aux;
+			}*/
+		  //Quitar comentario
+		 ////////////////////////////////////////
+		 //}*/
+		 //TraerCarrito trae el ultimo carrito de ese cliente antes de abrir otro
+		 //isCerrado se fija que la ultima compra/carrito este cerrado
+		 //Si no esta cerrado avisa que no se puede abrir un carrito nuevo hasta que se cierre el anterior
 	
+
