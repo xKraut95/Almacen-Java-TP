@@ -1,6 +1,6 @@
 package modelo;
 
-public class Actor {
+public abstract class Actor {
 
 	protected int id;
 	protected Contacto contacto;
@@ -31,4 +31,8 @@ public class Actor {
 	public String toString() {
 		return "Actor: id " + this.id + "Actor: contacto" + this.contacto;
 	}
+	
+	public abstract boolean validarIdentificadorUnico();
+	
+	
 }
