@@ -128,6 +128,7 @@ public class Comercio extends Actor {
 		this.porcentajeDescuentoEfectivo = porcentajeDescuentoEfectivo;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Datos de Comercio\n\tNombre: " + this.nombreComercio + "\n\tCuit: " + this.cuit + "\n\tCostoFijo: "

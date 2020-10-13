@@ -102,6 +102,10 @@ public class Carrito {
 		this.lstItemCarrito = listaItem;
 	}
 
+	public boolean equals(Carrito c) {
+		return this.id == c.getId();
+	}
+
 	@Override
 
 	public String toString() {
@@ -111,23 +115,19 @@ public class Carrito {
 	}
 
 	public ItemCarrito traerItemCarrito(Articulo articulo) {
-		ItemCarrito aux = new ItemCarrito(articulo, 0);
-		boolean band = false;
+		ItemCarrito aux = null;
+		boolean band = true;
 		int i = 0;
 		Iterator<ItemCarrito> iterador = lstItemCarrito.iterator();
 
-		while ((iterador.hasNext()) && (band == false)) {
-			if (iterador.next().getArticulo().getId() == articulo.getId()) {
-				band = true;
+		while ((iterador.hasNext()) && (band)) {
+			if (iterador.next().getArticulo().equals(articulo)) {
+				band = false;
 				aux = lstItemCarrito.get(i);
 			}
 			i++;
 		}
-
-		if (band == false)
-			return null;
-		else
-			return aux;
+		return aux;
 	}
 
 	public boolean agregarAlCarrito(Articulo articulo, int cantidad) {
@@ -152,7 +152,7 @@ public class Carrito {
 				int restaCantArticulo = aux.getCantidad() - cantidad;
 				aux.setCantidad(restaCantArticulo);
 			} else {
-				return lstItemCarrito.remove(aux);
+				lstItemCarrito.remove(aux);
 			}
 		}
 		return true;
@@ -182,8 +182,7 @@ public class Carrito {
 	}
 
 	public double calcularDescuentoEfectivo(double porcentajeDescuentoEfectivo) {
-		double descuento = calcularTotal() * (porcentajeDescuentoEfectivo / 100);
-		return descuento;
+		return calcularTotal() * (porcentajeDescuentoEfectivo / 100);
 	}
 
 	public double calcularDescuentoCarrito(int diaDescuento, double porcentajeDescuento,
