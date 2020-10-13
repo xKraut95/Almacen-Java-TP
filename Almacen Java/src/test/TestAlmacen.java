@@ -83,7 +83,7 @@ public class TestAlmacen {
 		try {
 			cliente1.setDni(547);
 		} catch (Exception e) {
-			System.out.println("Excepcion: Valor Asignado no es numérico");
+			System.out.println("Excepcion:" + e.getMessage());
 		}
 
 		almacen.separador();
@@ -111,6 +111,14 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
+		
+		try {
+			cliente2.setDni(-12345678);
+
+		} catch (Exception e) {
+			System.out.println("Excepcion:" + e.getMessage());
+		}
+		
 
 		almacen.separador();
 		System.out.println(cliente2);
