@@ -70,4 +70,10 @@ public class Cliente extends Actor {
 
 	}
 
+	@Override
+	public boolean ValidarIdentificadorUnico() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

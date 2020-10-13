@@ -33,4 +33,7 @@ public abstract class Actor {
 	public String toString() {
 		return "Actor: id " + this.id + "Actor: contacto" + this.contacto;
 	}
+	
+	public abstract boolean ValidarIdentificadorUnico();
+	
 }

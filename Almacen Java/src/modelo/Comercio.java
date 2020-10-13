@@ -314,4 +314,10 @@ public class Comercio extends Actor {
 		}
 		return turnos;
 	}
+
+	@Override
+	public boolean ValidarIdentificadorUnico() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
