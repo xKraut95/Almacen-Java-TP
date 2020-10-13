@@ -8,10 +8,13 @@ import modelo.Actor;
 import modelo.Articulo;
 import modelo.Carrito;
 import modelo.ItemCarrito;
+import modelo.RetiroLocal;
 import modelo.Turno;
 import modelo.Ubicacion;
 import modelo.Comercio;
 import modelo.Contacto;
+import modelo.Entrega;
+import modelo.Envio;
 import modelo.Cliente;
 
 public class TestAlmacen {
@@ -20,17 +23,19 @@ public class TestAlmacen {
 
 		LocalDate fecha = LocalDate.now();
 		LocalTime hora = LocalTime.now();
-		Ubicacion ubicacionAlmacen=new Ubicacion(343647, 582238);
-		Contacto contactoAlmacen= new Contacto ("almacengranate@gmail.com","42673455",ubicacionAlmacen);
+		Ubicacion ubicacionAlmacen = new Ubicacion(343647, 582238);
+		LocalTime horaDesde = LocalTime.parse("09:00");
+		LocalTime horaHasta = LocalTime.parse("20:00");
+		Contacto contactoAlmacen = new Contacto("almacengranate@gmail.com", "42673455", ubicacionAlmacen);
+
 		try {
 			contactoAlmacen.setEmail("almacengranate@gmail.com");
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Excepcion:" + e.getMessage());
 		}
 //INSTANCIA DE COMERCIO
-		Actor comercio= new Comercio(1, contactoAlmacen, "Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
-		Comercio almacen=(Comercio)comercio;
+		Actor comercio = new Comercio(1, contactoAlmacen, "Almacen Granate", 30242112322L, 2, 4, 5, 2, 4);
+		Comercio almacen = (Comercio) comercio;
 
 		almacen.separador();
 		System.out.println("Escenario 1: Validaciones Cuit del Comercio");
@@ -71,8 +76,10 @@ public class TestAlmacen {
 		System.out.println(almacen);
 
 //INSTANCIA DE CLIENTE Y VALIDACION DEL DNI
-		Actor customer1= new Cliente(1, new Contacto ("nachosoloduja@hotmail.com","1112345678",new Ubicacion(11111, 22222)), "Soloduja", "Ignacio", 42678234, 'm');
-		Cliente cliente1=(Cliente)customer1;
+		Actor customer1 = new Cliente(1,
+				new Contacto("nachosoloduja@hotmail.com", "1112345678", new Ubicacion(11111, 22222)), "Soloduja",
+				"Ignacio", 42678234, 'm');
+		Cliente cliente1 = (Cliente) customer1;
 		try {
 			cliente1.setDni(547);
 		} catch (Exception e) {
@@ -83,9 +90,11 @@ public class TestAlmacen {
 		System.out.println(cliente1);
 
 //CREACION DE OTRO CLIENTE Y VALIDACIONES DE DNI
-		Actor customer2= new Cliente(2, new Contacto ("cordelranch@gmail.com","1123658745",new Ubicacion(33333, 444444)), "Del Rancho", "Cornelio", 12345678, 'm');
-		Cliente cliente2=(Cliente)customer2;
-	
+		Actor customer2 = new Cliente(2,
+				new Contacto("cordelranch@gmail.com", "1123658745", new Ubicacion(33333, 444444)), "Del Rancho",
+				"Cornelio", 12345678, 'm');
+		Cliente cliente2 = (Cliente) customer2;
+
 		try {
 			System.out.println(cliente2.validarIdentificadorUnico(cliente2.getDni()));
 		} catch (Exception e) {
@@ -105,12 +114,20 @@ public class TestAlmacen {
 
 		almacen.separador();
 		System.out.println(cliente2);
-		
 
-	
+//Instanciamos Entrega y RetiroLOcal
+		Entrega entrega1 = new RetiroLocal(1, fecha, true);
+		Entrega entrega2 = new Envio(2, fecha, true, horaHasta, horaDesde);
 
 //INSTANCIA DE CARRITO
-		Carrito carrito = new Carrito(1, fecha, hora, false, 1, cliente1);
+		Carrito carrito = new Carrito(1, fecha, hora, false, 1, cliente1, entrega2);
+
+//SE CALCULA COSTO DE ENVIO
+		System.out.println(entrega2);
+		entrega2 = carrito.getEntrega();
+		((Envio) entrega2).setUbicacion(cliente1.traerUbicacion());
+		((Envio) entrega2).setCosto(almacen.traerUbicacion(), almacen.getCostoFijo(), almacen.getCostoPorKm());
+		System.out.println(entrega2);
 
 //DATOS DE CARRITO
 		System.out.println();
@@ -217,7 +234,7 @@ public class TestAlmacen {
 		System.out.println("Item solicitado: \n" + carrito.traerItemCarrito(art5));
 
 //UNA VEZ HECHO LOS CAMBIOS NECESARIOS, SE CIERRA EL CARRITO
-		//carrito.setCerrado(true);
+		carrito.setCerrado(true);
 
 //PRODUCTOS DESPUES DE LAS MODIFICACIONES, IMPRESION DE CARRITO COMPLETO
 		almacen.separador();
@@ -268,66 +285,57 @@ public class TestAlmacen {
 //TOTAL FINAL
 			System.out.println("Total final: " + carrito.totalAPagarCarrito());
 		}
-		
+
 //AGREGAMOS OTRO CARRITO CON UN CLIENTE DIFERENTE
 		Carrito carrito2 = new Carrito(2, fecha, hora.plusMinutes(14), false, 1, cliente2);
-		
+
 //SE AGREGAN ITEMS AL CARRITO2
 		carrito2.agregarAlCarrito(art3, 4);
-		carrito2.agregarAlCarrito(art1,6);
-		carrito2.agregarAlCarrito(art2,2);
-		
+		carrito2.agregarAlCarrito(art1, 6);
+		carrito2.agregarAlCarrito(art2, 2);
+
 		carrito2.setCerrado(true);
-		
+
 //VAMOS AGREGANDO LOS CARRITOS A LA LISTA
 		almacen.getLstCarrito();
 		almacen.listaCarritos(carrito);
 		almacen.listaCarritos(carrito2);
 //CREAMOS UN NUEVO CARRITO CON EL PRIMER CLIENTE
-		//funcionaaaaaaaaaaaaaaaaaaaaa
-		//if((almacen.traerCarrito(almacen.getLstICarrito(), cliente1) == null) ||(almacen.isCerrado(almacen.traerCarrito(almacen.getLstICarrito(), cliente1)))){
 		try {
-			//System.out.println(almacen.aptoAbrirNuevoCarrito(almacen.getLstICarrito(), cliente1));
 			if (almacen.aptoAbrirNuevoCarrito(almacen.getLstCarrito(), cliente1)) {
 				Carrito carrito3 = new Carrito(3, fecha, hora.plusMinutes(35), false, 1, cliente1);
-			
-			
+
 //SE AGREGAN ITEMS AL CARRITO2
 				carrito3.agregarAlCarrito(art5, 2);
-				carrito3.agregarAlCarrito(art3,8);
-				carrito3.agregarAlCarrito(art2,5);
+				carrito3.agregarAlCarrito(art3, 8);
+				carrito3.agregarAlCarrito(art2, 5);
 				almacen.separador();
 				almacen.listaCarritos(carrito3);
-				}
 			}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		
+
 		almacen.separador();
-		
+
 //CREAMOS UN NUEVO CARRITO CON EL CLIENTE2
-		//funcionaaaaaaaaaaaaaaaaaaaaa
-		//if((almacen.traerCarrito(almacen.getLstICarrito(), cliente1) == null) ||(almacen.isCerrado(almacen.traerCarrito(almacen.getLstICarrito(), cliente1)))){
 		try {
-			//System.out.println(almacen.aptoAbrirNuevoCarrito(almacen.getLstICarrito(), cliente1));
 			if (almacen.aptoAbrirNuevoCarrito(almacen.getLstCarrito(), cliente2)) {
 				Carrito carrito4 = new Carrito(4, fecha, hora.plusMinutes(35), false, 1, cliente2);
-				
+
 //SE AGREGAN ITEMS AL CARRITO2
 				carrito4.agregarAlCarrito(art1, 4);
-				carrito4.agregarAlCarrito(art5,3);
-				carrito4.agregarAlCarrito(art1,5);
+				carrito4.agregarAlCarrito(art5, 3);
+				carrito4.agregarAlCarrito(art1, 5);
 				almacen.separador();
 				almacen.listaCarritos(carrito4);
-				}
 			}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
-			}
-		
-		almacen.separador();		
-		
+		}
+
+		almacen.separador();
+
 //SE ESTABLECEN LOS DIAS DE RETIRO
 		almacen.agregarDiaRetiro(1, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
 		almacen.agregarDiaRetiro(2, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
@@ -335,13 +343,15 @@ public class TestAlmacen {
 		almacen.agregarDiaRetiro(4, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
 		almacen.agregarDiaRetiro(5, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);
 		almacen.agregarDiaRetiro(6, LocalTime.of(10, 00), LocalTime.of(15, 00), 15);
-		almacen.agregarDiaRetiro(7, LocalTime.of(10, 00), LocalTime.of(15, 00), 10);//Despues borrar
-		
-		//Casos, en los que no se agrega el dato nuevo
-		almacen.agregarDiaRetiro(3, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);//No se agrega porque ya existe uno identico
-		almacen.agregarDiaRetiro(9, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);//No se agrega porque numero de DiaSemana es mayor al valido
-		almacen.agregarDiaRetiro(0, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);//No se agrega porque numero de DiaSemana es menos al valido
-		
+
+		// Casos, en los que no se agrega el dato nuevo
+		almacen.agregarDiaRetiro(3, LocalTime.of(9, 00), LocalTime.of(20, 00), 10);// No se agrega porque ya existe uno
+																					// identico
+		almacen.agregarDiaRetiro(9, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);// No se agrega porque numero de
+																					// DiaSemana es mayor al valido
+		almacen.agregarDiaRetiro(0, LocalTime.of(1, 00), LocalTime.of(5, 00), 20);// No se agrega porque numero de
+																					// DiaSemana es menos al valido
+
 		almacen.mostrarListaDiasRetiro();
 		almacen.separador();
 		try {
@@ -349,23 +359,48 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		List<Turno> agendaGuardada=almacen.generarAgenda(fecha);
+		List<Turno> agendaGuardada = almacen.generarAgenda(fecha);
 		almacen.separador();
+		System.out.println("Agenda de Turnos");
 		System.out.println(agendaGuardada);
-		//System.out.println(almacen.generarTurnosLibres(fecha));
+
 		almacen.separador();
-		//System.out.println(almacen.traerTurnosOcupados(fecha));
-		almacen.separador();
+
 		System.out.println("Lista de Carritos: ");
 		System.out.println(almacen.getLstCarrito());
 		almacen.separador();
-		System.out.println(almacen.traerCarrito(almacen.getLstCarrito(), cliente1));//despues se borra
-		//System.out.println(almacen.isCerrado(carrito3));//despues se borra
+
+		System.out.println(almacen.traerCarrito(almacen.getLstCarrito(), cliente1));// despues se borra
+
 		almacen.separador();
-		//System.out.println(almacen.aptoAbrirNuevoCarrito(almacen.getLstICarrito(), cliente2));
-		
-		
-		
-		
+
+		// Prueba del metodo Asignar Turno
+
+		almacen.separador();
+		Carrito carrito5 = new Carrito(5, fecha, LocalTime.parse("10:00"), false, 0, cliente2);
+		carrito5.agregarAlCarrito(art5, 3);
+		carrito5.agregarAlCarrito(art2, 6);
+		almacen.listaCarritos(carrito5);
+		carrito5.setEntrega(entrega1);
+
+		System.out.println(carrito5);
+		almacen.separador();
+		System.out.println(almacen.getLstCarrito());
+		almacen.separador();
+		System.out.println(almacen.asignarTurno(agendaGuardada));
+		System.out.println(carrito5);
+		almacen.separador();
+
+		System.out.println("Lista de Turno Libre");
+		System.out.println(almacen.generarTurnosLibres(agendaGuardada, fecha));
+		System.out.println("Lista de Turnos Ocupados");
+		System.out.println(almacen.traerTurnosOcupados(agendaGuardada, fecha));
+
+		Carrito carrito6 = new Carrito(6, fecha, LocalTime.parse("10:00"), false, 0, cliente2);
+		carrito5.agregarAlCarrito(art5, 3);
+		carrito5.agregarAlCarrito(art2, 6);
+		almacen.listaCarritos(carrito6);
+		carrito5.setEntrega(entrega1);
+
 	}
 }

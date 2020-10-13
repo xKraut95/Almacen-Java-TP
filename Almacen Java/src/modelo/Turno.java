@@ -43,7 +43,5 @@ public class Turno {
 	public String toString() {
 		return "\nTurnos:\n\tDia: " + this.dia + "\n\tHora: " + this.hora + "\n\tOcupado: " + this.ocupado;
 	}
-	
-	
-}
 
+}

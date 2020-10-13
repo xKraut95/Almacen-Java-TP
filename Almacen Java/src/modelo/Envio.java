@@ -18,6 +18,12 @@ public class Envio extends Entrega {
 		this.ubicacion = ubicacion;
 	}
 
+	public Envio(int id, LocalDate fecha, boolean efectivo, LocalTime horaHasta, LocalTime horaDesde) {
+		super(id, fecha, efectivo);
+		this.horaHasta = horaHasta;
+		this.horaDesde = horaDesde;
+	}
+
 	public LocalTime getHoraHasta() {
 		return horaHasta;
 	}

@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Comercio extends Actor{
+public class Comercio extends Actor {
 
 	private String nombreComercio;
 	private long cuit;
@@ -21,9 +21,9 @@ public class Comercio extends Actor{
 	private ArrayList<Articulo> lstArticulo;
 	private ArrayList<Carrito> lstCarrito;
 
-	public Comercio(int id, Contacto contacto, String nombreComercio, long cuit, double costoFijo, double costoPorKm, int diaDescuento,
-			int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
-		
+	public Comercio(int id, Contacto contacto, String nombreComercio, long cuit, double costoFijo, double costoPorKm,
+			int diaDescuento, int porcentajeDescuentoDia, int porcentajeDescuentoEfectivo) throws Exception {
+
 		super(id, contacto);
 		this.nombreComercio = nombreComercio;
 		this.setCuit(cuit);
@@ -200,287 +200,117 @@ public class Comercio extends Actor{
 		}
 		return resultado;
 	}
-	
-	//Redefinido
-	/*public DiaRetiro traerDiaRetiro(LocalDate fecha) {
-		//DiaRetiro aux = new DiaRetiro(0, diaRetiro.getDiaSemana(), diaRetiro.getHoraDesde(), diaRetiro.getHoraHasta(),
-		//		diaRetiro.getIntervalo());
-		DiaRetiro aux = null; 
+
+	public DiaRetiro traerDiaRetiro(LocalDate fecha) {
+		DiaRetiro aux = null;
 		int diaSemana = fecha.getDayOfWeek().getValue();
-		boolean resultado = false;
-		Iterator<DiaRetiro> iterador = lstDiaRetiro.iterator();
-		while ((iterador.hasNext()) && (resultado == false)) {
-			if (iterador.next().equals(diaSemana)) {
-				resultado = true;
-				
+		for (DiaRetiro dia : lstDiaRetiro) {
+			if (dia.getDiaSemana() == diaSemana) {
+				aux = dia;
 			}
 		}
-		if (resultado == true)
-			return aux;
-		else
-			return null;
-	}*/
-	
-	public DiaRetiro traerDiaRetiro(LocalDate fecha)
-	{
-		DiaRetiro aux = null; 
-		int diaSemana = fecha.getDayOfWeek().getValue();
-		for(DiaRetiro dia: lstDiaRetiro)
-		{
-			if(dia.getDiaSemana()==diaSemana)
-			{
-				aux= dia;
-			}
-		}
-		
+
 		return aux;
 	}
 
+	public List<Turno> generarAgenda(LocalDate fecha) throws Exception {
 
-		public List<Turno> generarAgenda (LocalDate fecha) throws Exception { //Retorna una lista de objetos Turno indicando si está ocupado o libre
-					
-			DiaRetiro aux = traerDiaRetiro(fecha);
-			List<Turno> agenda = new ArrayList <Turno>();
-			//List<Turno> ocupados = traerTurnosOcupados(fecha);
-			if(aux == null) throw new Exception ("Error: No se puede generar la Agenda. Almacen Cerrado");
-			else {
-				LocalTime hora = aux.getHoraDesde();
-				agenda.add(new Turno(fecha,hora,false));
-				
-				while(hora.isBefore(aux.getHoraHasta())){
-					hora=hora.plusMinutes(aux.getIntervalo());
-					//if()
-					agenda.add(new Turno(fecha, hora, false));
-				}
-			}
-			return agenda;
-			}
-		
-		public List<Turno> generarTurnosLibres(LocalDate fecha)
-		 {
-			 DiaRetiro config = traerDiaRetiro(fecha);
-			 
-			 List<Turno> ocupados = traerTurnosOcupados(fecha);
-			 List<Turno> libres = new ArrayList <Turno>();
-			 boolean busca = false;
-			boolean ingresado = false;
-			 
-			LocalTime inicio = config.getHoraDesde();
-			 
-			while(busca == false)
-			{
-			   for(Turno turn: ocupados)
-			   {
-				 if(turn.getHora().equals(inicio))
-		         {
-		        	 ingresado = true;
-		         } 
-			   }
-			   if(ingresado !=true)
-			   {
-				   libres.add(new Turno(fecha, inicio, false));
-			   }
-			   if(inicio.equals(config.getHoraHasta()))
-			   {
-				   busca= true;
-			   }
-			   else
-			   {
-				   inicio.plusMinutes(config.getIntervalo());
-				   ingresado= false;
-			   }
-			}
-			return libres;
-			 
-		 }
-		 public List<Turno> traerTurnosOcupados(LocalDate fecha)
-		 {
-			 List<Turno> turnosOcupados = new ArrayList<Turno>();
-			 
-			 for(Carrito car: lstCarrito)
-			 {
-				 LocalTime hora = car.traerHoraRetiro(fecha);
-				 
-				 if(hora != null)
-				 {
-					 turnosOcupados.add(new Turno(fecha, hora, true));
-				 }
-			 }
-			
-			 return turnosOcupados;
-		 }
-		
-		/*public List<Turno> generarTurnosLibres(LocalDate fecha)
-		 {
-			 DiaRetiro config = traerDiaRetiro(fecha);
-			 
-			 List<Turno> ocupados = traerTurnosOcupados(fecha);
-			 List<Turno> libres = new ArrayList <Turno>();
-			 boolean busca = false;
-			boolean ingresado = false;
-			 
-			LocalTime inicio = config.getHoraDesde();
-			 
-			while(busca == false)
-			{
-			   for(Turno turn: ocupados)
-			   {
-				 if(turn.getHora().equals(inicio))
-		         {
-		        	 ingresado = true;
-		         } 
-			   }
-			   if(ingresado !=true)
-			   {
-				   libres.add(new Turno(fecha, inicio, false));
-			   }
-			   if(inicio.equals(config.getHoraHasta()))
-			   {
-				   busca= true;
-			   }
-			   else
-			   {
-				   inicio.plusMinutes(config.getIntervalo());
-				   ingresado= false;
-			   }
-			}
-			return libres;
-			 
-		 }
-		 public List<Turno> traerTurnosOcupados(LocalDate fecha)
-		 {
-			 List<Turno> turnosOcupados = new ArrayList<Turno>();
-			 
-			 for(Carrito car: lstICarrito)
-			 {
-				 LocalTime hora = car.traerHoraRetiro(fecha);
-				 
-				 if(hora != null)
-				 {
-					 turnosOcupados.add(new Turno(fecha, hora, true));
-				 }
-			 }
-			
-			 return turnosOcupados;
-		 }*/
-		 
-		// public List<Carrito> listaCarritos(Cliente cliente){//(LocalDate fecha)
-			 
-		// }
-		 
-		 //esto no funciona
-		/*public void mostrarListaCarritos() {
-				for (Carrito carritos : getLstICarrito()) {
-					System.out.println(carritos);
-				}
-				
-		}*/
-		 
-		 public List<Carrito> listaCarritos (Carrito carrito) { //Retorna una lista de objetos Turno indicando si está ocupado o libre
-			 lstCarrito.add(carrito);
-			 return lstCarrito;
-		 }
+		DiaRetiro aux = traerDiaRetiro(fecha);
+		List<Turno> agenda = new ArrayList<Turno>();
+		if (aux == null)
+			throw new Exception("Error: No se puede generar la Agenda. Almacen Cerrado");
+		else {
+			LocalTime hora = aux.getHoraDesde();
+			agenda.add(new Turno(fecha, hora, false));
 
-		/* public Carrito traerCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) {
-				int id =1;
-				
-				boolean encontrado = false;
-				Iterator<Carrito> iterador = lstCarrito.iterator();
-				while (iterador.hasNext()) {
-					if (iterador.next().equals(cliente.getId())) {
-						encontrado = true;
-						return carr
-						
-					}
-					id++;
-				}
-				if (resultado == true)
-					return null;
-				else
-					return aux;
-			}*/
-		 
-		 public Carrito traerCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) {//traerUltimoCarritoDelCliente
-			 Carrito aux=null;
-			 for(Carrito cart: lstCarrito){
-				 if(cart.getCliente()==cliente){
-					 aux=cart;
-					 }
-				 }
+			while (hora.isBefore(aux.getHoraHasta())) {
+				hora = hora.plusMinutes(aux.getIntervalo());
+				agenda.add(new Turno(fecha, hora, false));
+			}
+		}
+		return agenda;
+	}
+
+	public List<Carrito> listaCarritos(Carrito carrito) {
+		lstCarrito.add(carrito);
+		return lstCarrito;
+	}
+
+	public Carrito traerCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) {
+		Carrito aux = null;
+		for (Carrito cart : lstCarrito) {
+			if (cart.getCliente() == cliente) {
+				aux = cart;
+			}
+		}
 		return aux;
-		 }
-		 //polimorfismo? del metodo iscerrado de la clase Carrito
-		 /*public boolean isCerrado(Carrito cart) {
-				return cart.isCerrado();
-			}*/
-		 
-		 
-		 public boolean aptoAbrirNuevoCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) throws Exception{
-			 Carrito aux=null;
-			 boolean apto=true;
-			 for(Carrito cart: lstCarrito){
-				 if(cart.getCliente()==cliente){
-					 aux=cart;
-					 apto=true;
-					 }
-				 }
-			/* if(aux.isCerrado()==true||aux==null) {
-				 apto=true;
-			 }
-			 else throw{*/
-			 if(aux.isCerrado()==false) {
-				 apto=false;
-			 }
-			 if(apto==false)throw new Exception("Error: Debe cerrar su carrito anterior para generar uno nuevo");
-			 return apto;
-		 }
-		 
-		 
-}		 
-		 /////
-		/*//quitarComentario
-		  public int traerSoloHora(LocalTime tiempo) {
-		 
-			int soloHora = tiempo.getHour();
-			 return soloHora;
-		 }
-		 public int traerDecenaMinutos(LocalTime tiempo) {
-			 int soloMinutos = tiempo.getMinute();
-			 
-		 }
-		 ///////////////////////////////////BORRADOR
-		 public List<Turno> modificarSetOcupado(List<Turno> agenda,Carrito cart) {
-			 Iterator<Turno> iterador = agenda.iterator();
-				//while ((iterador.hasNext()) && (resultado == false)) {
-			 while ((iterador.hasNext())) {
-					if (iterador.next().equals(traerSoloHora(cart.getHora()))&&iterador.next().equals(obj)) {
-						while ())
-						
-						
-						resultado = true;
-					}
-				}
-				if (resultado == true)
-					return null;
-				else
-					return aux;
-		 }
-			 //////
-			 /*while()
-				for(Turno turno : agenda){
-					if(turno.()==diaSemana)
-					{
-						aux= dia;
-					}
-				}
-				
-				return aux;
-			}*/
-		  //Quitar comentario
-		 ////////////////////////////////////////
-		 //}*/
-		 //TraerCarrito trae el ultimo carrito de ese cliente antes de abrir otro
-		 //isCerrado se fija que la ultima compra/carrito este cerrado
-		 //Si no esta cerrado avisa que no se puede abrir un carrito nuevo hasta que se cierre el anterior
-	
+	}
 
+	public boolean aptoAbrirNuevoCarrito(ArrayList<Carrito> lstCarrito, Cliente cliente) throws Exception {
+		Carrito aux = null;
+		boolean apto = true;
+		for (Carrito cart : lstCarrito) {
+			if (cart.getCliente() == cliente) {
+				aux = cart;
+				apto = true;
+			}
+		}
+		if (aux.isCerrado() == false) {
+			apto = false;
+		}
+		if (apto == false)
+			throw new Exception("Error: Debe cerrar su carrito anterior para generar uno nuevo");
+		return apto;
+	}
+
+	public int traerSoloHora(LocalTime tiempo) {
+		int soloHora = tiempo.getHour();
+		return soloHora;
+	}
+
+	public int traerDecenaMinutos(LocalTime tiempo) {
+		int soloMinutos = tiempo.getMinute();
+		int decena = soloMinutos / 10;
+		return decena;
+
+	}
+
+	public boolean asignarTurno(List<Turno> agenda) {
+		boolean flag = false;
+		Entrega entrega = null;
+		for (Carrito carrito : lstCarrito) {
+			for (Turno turno : agenda) {
+				if (turno.getHora() == carrito.getHora()) {
+					turno.setOcupado(true);
+					entrega = carrito.getEntrega();
+					((RetiroLocal) entrega).setHoraEntrega(turno.getHora());
+					flag = true;
+				}
+			}
+		}
+
+		return flag;
+	}
+
+	public List<Turno> generarTurnosLibres(List<Turno> agenda, LocalDate fecha) {
+		List<Turno> turnos = new ArrayList<Turno>();
+
+		for (Turno turno : agenda) {
+			if (turno.isOcupado() == false) {
+				turnos.add(turno);
+			}
+		}
+		return turnos;
+	}
+
+	public List<Turno> traerTurnosOcupados(List<Turno> agenda, LocalDate fecha) {
+		List<Turno> turnos = new ArrayList<Turno>();
+
+		for (Turno turno : agenda) {
+			if (turno.isOcupado() == true) {
+				turnos.add(turno);
+			}
+		}
+		return turnos;
+	}
+}

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
-
 public class Carrito {
 	private int id;
 	private LocalDate fecha;
@@ -39,18 +37,6 @@ public class Carrito {
 		this.cliente = cliente;
 		this.lstItemCarrito = new ArrayList<ItemCarrito>();
 	}
-	
-	//Sobrecarga que tira excepcion cuando el carrito anterior no fue cerrado
-	/*public Carrito(int id,  LocalDate fecha, LocalTime hora, boolean cerrado, double descuento, Cliente cliente) throws Exception{
-		if()
-		this.id = id;
-		this.fecha = fecha;
-		this.hora = hora;
-		this.cerrado = cerrado;
-		this.descuento = descuento;
-		this.cliente = cliente;
-		this.lstItemCarrito = new ArrayList<ItemCarrito>();
-	}*/
 
 	public int getId() {
 		return id;
@@ -117,12 +103,11 @@ public class Carrito {
 	}
 
 	@Override
-	
+
 	public String toString() {
-		return "Carrito: " + id + "\n\tFecha = " + fecha + "\n\tHora = " + hora + "\n\tCerrado = " 
-				+ cerrado + "\n\tDescuento = "
-				+ descuento + "\n\tCliente = " + cliente + "\n\tEntrega = " + entrega + ",\n\tLista de Items = \n"
-				+ lstItemCarrito;
+		return "Carrito: " + id + "\n\tFecha = " + fecha + "\n\tHora = " + hora + "\n\tCerrado = " + cerrado
+				+ "\n\tDescuento = " + descuento + "\n\tCliente = " + cliente + "\n\tEntrega = " + entrega
+				+ ",\n\tLista de Items = \n" + lstItemCarrito;
 	}
 
 	public ItemCarrito traerItemCarrito(Articulo articulo) {
@@ -145,17 +130,6 @@ public class Carrito {
 			return aux;
 	}
 
-	/*public boolean agregarAlCarrito(Articulo articulo, int cantidad) { //Esto funciona
-		ItemCarrito aux = traerItemCarrito(articulo);
-		if (aux == null)
-			return lstItemCarrito.add(new ItemCarrito(articulo, cantidad));
-		else {
-			int sumaDeCantArticulo = aux.getCantidad() + cantidad;
-			aux.setCantidad(sumaDeCantArticulo);
-			return true;
-		}
-	}*/
-	
 	public boolean agregarAlCarrito(Articulo articulo, int cantidad) {
 		ItemCarrito aux = traerItemCarrito(articulo);
 		if (aux == null)
@@ -163,9 +137,9 @@ public class Carrito {
 		else {
 			int sumaDeCantArticulo = aux.getCantidad() + cantidad;
 			aux.setCantidad(sumaDeCantArticulo);
-			
+
 		}
-		
+
 		return true;
 	}
 
@@ -228,18 +202,24 @@ public class Carrito {
 	public double totalAPagarCarrito() {
 		return calcularTotal() - getDescuento();
 	}
-	
+
 	public LocalTime traerHoraRetiro(LocalDate fecha) {
-        LocalTime hora = null;
-        if(this.entrega instanceof RetiroLocal && entrega.getFecha()==fecha) {
-            hora=((RetiroLocal) entrega).getHoraEntrega();
+		LocalTime hora = null;
+		if (this.entrega instanceof RetiroLocal && entrega.getFecha() == fecha) {
+			hora = ((RetiroLocal) entrega).getHoraEntrega();
 
-        }
-        return hora;
-      
-    }
+		}
+		return hora;
 
-	///////////////////////
-	
-	
+	}
+
+	public LocalTime traerHoraRetiro() {
+		LocalTime hora = null;
+		if (this.entrega instanceof RetiroLocal) {
+			hora = ((RetiroLocal) entrega).getHoraEntrega();
+
+		}
+		return hora;
+	}
+
 }

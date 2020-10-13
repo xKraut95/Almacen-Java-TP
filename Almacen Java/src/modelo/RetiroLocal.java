@@ -11,6 +11,10 @@ public class RetiroLocal extends Entrega {
 		this.horaEntrega = horaEntrega;
 	}
 
+	public RetiroLocal(int id, LocalDate fecha, boolean efectivo) {
+		super(id, fecha, efectivo);
+	}
+
 	public LocalTime getHoraEntrega() {
 		return horaEntrega;
 	}
