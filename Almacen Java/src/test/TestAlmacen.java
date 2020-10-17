@@ -365,10 +365,10 @@ public class TestAlmacen {
 		} catch (Exception e) {
 			System.out.println("Excepcion: " + e.getMessage());
 		}
-		List<Turno> agendaGuardada = almacen.generarAgenda(fecha);
+		List<Turno> agenda = almacen.generarAgenda(fecha);
 		almacen.separador();
 		System.out.println("Agenda de Turnos");
-		System.out.println(agendaGuardada);
+		System.out.println(agenda);
 
 		almacen.separador();
 
@@ -393,14 +393,14 @@ public class TestAlmacen {
 		almacen.separador();
 		System.out.println(almacen.getLstCarrito());
 		almacen.separador();
-		System.out.println(almacen.asignarTurno(agendaGuardada));
+		System.out.println(almacen.asignarTurno(agenda));
 		System.out.println(carrito5);
 		almacen.separador();
 
 		System.out.println("Lista de Turno Libre");
-		System.out.println(almacen.generarTurnosLibres(agendaGuardada, fecha));
+		System.out.println(almacen.generarTurnosLibres(agenda, fecha));
 		System.out.println("Lista de Turnos Ocupados");
-		System.out.println(almacen.traerTurnosOcupados(agendaGuardada, fecha));
+		System.out.println(almacen.traerTurnosOcupados(agenda, fecha));
 
 		Carrito carrito6 = new Carrito(6, fecha, LocalTime.parse("10:00"), false, 0, cliente2);
 		carrito5.agregarAlCarrito(art5, 3);
