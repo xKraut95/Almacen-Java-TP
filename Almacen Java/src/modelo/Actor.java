@@ -34,6 +34,6 @@ public abstract class Actor {
 		return "Actor: id " + this.id + "Actor: contacto" + this.contacto;
 	}
 	
-	public abstract boolean ValidarIdentificadorUnico();
+	
 	
 }

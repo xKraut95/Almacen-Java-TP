@@ -61,19 +61,13 @@ public class Cliente extends Actor {
 	public boolean validarIdentificadorUnico(long dni) throws Exception {
 		String dniString = Long.toString(dni);
 		boolean flag = false;
-		
-		if ((dniString.length() == 8) && (dni>0)) { 
+
+		if ((dniString.length() == 8) && (dni > 0)) {
 			flag = true;
 
 		}
 		return flag;
 
-	}
-
-	@Override
-	public boolean ValidarIdentificadorUnico() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }

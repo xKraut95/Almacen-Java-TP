@@ -76,9 +76,7 @@ public class TestAlmacen {
 		System.out.println(almacen);
 
 //INSTANCIA DE CLIENTE Y VALIDACION DEL DNI
-		Actor customer1 = new Cliente(1,
-				new Contacto("nachosoloduja@hotmail.com", "1112345678", new Ubicacion(11111, 22222)), "Soloduja",
-				"Ignacio", 42678234, 'm');
+		Actor customer1 = new Cliente(1,new Contacto("nachosoloduja@hotmail.com", "1112345678", new Ubicacion(11111, 22222)), "Soloduja","Ignacio", 42678234, 'm');
 		Cliente cliente1 = (Cliente) customer1;
 		try {
 			cliente1.setDni(547);
